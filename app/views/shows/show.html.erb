@@ -1,1 +1,9 @@
-<%= @show.title %> <%= image_tag(@show.poster, size: "200") %>
+<% provide(:title, @show.title) %>
+<%= @show.title %> 
+<%= image_tag(@show.poster, size: "200") %>
+<% if @show.seasons.any? %>
+  <h3>Seasons (<%= @show.seasons.count %>)</h3>
+  <ol class="seasons">
+    <%= render @seasons %>
+  </ol>
+<%end%>

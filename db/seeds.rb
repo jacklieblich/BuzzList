@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Show.create(title:"It's Always Sunny in Philadelphia", poster: "http://www.impawards.com/tv/posters/its_always_sunny_in_philadelphia_ver5_xlg.jpg")
+
+for i in 1..11
+  Show.find_by(id:1).seasons.create(season_number: i)
+end
