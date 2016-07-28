@@ -1,0 +1,5 @@
+<% provide(:title, @season.show.title + " | " + @season.season_number.to_s) %>
+<h1>List of episodes</h1>
+<ol class="episodes">
+  <%= render @episodes %>
+</ol>

@@ -10,3 +10,18 @@ Show.create(title:"It's Always Sunny in Philadelphia", poster: "http://www.impaw
 for i in 1..11
   Show.find_by(id:1).seasons.create(season_number: i)
 end
+
+
+i = 1
+j = 1
+sunny = Imdb::Serie.new("0472954")
+until i > 11
+  until j > sunny.season(i).episodes.size
+    Show.find_by(id: 1).seasons.find_by(id: i).episodes.create(episode_number: j, title: sunny.season(i).episode(j).title, summary:sunny.season(i).episode(j).plot)
+    j +=1
+  end
+  j = 1
+  i +=1
+end
+  
+
