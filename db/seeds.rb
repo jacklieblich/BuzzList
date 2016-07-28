@@ -23,5 +23,22 @@ until i > 11
   j = 1
   i +=1
 end
-  
+
+office = Imdb::Serie.new("0386676")
+Show.create(title: office.title, poster: office.poster)
+i = 1
+until i > office.seasons.size
+  Show.find_by(title: office.title).seasons.create(season_number: i)
+  i += 1
+end
+i = 1
+j=1
+until i > office.seasons.size
+  until j > office.season(i).episodes.size
+    Show.find_by(title: office.title).seasons.find_by(season_number: i).episodes.create(episode_number: j, title: office.season(i).episode(j).title, summary: office.season(i).episode(j).plot)
+    j += 1
+  end
+  j = 1
+  i += 1
+end
 
