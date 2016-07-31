@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :users
   resources :shows
   resources :seasons
+  resources :ratings
 end
