@@ -1,0 +1,9 @@
+<h1>add new quote</h1>
+<%= form_for(@quote) do |f|%>
+  <%= f.label :character %>
+  <%= f.text_field :character, required: true%>
+  <%= f.label :content %>
+  <%= f.text_field :content, required: true%>
+  <%= f.hidden_field :episode_id, value: params[:episode] %>
+  <%= f.submit "Create" %>
+<% end %>

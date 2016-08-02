@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   
   has_many :ratings, dependent: :destroy
+  has_many :quotes
+  has_many :clips
 end

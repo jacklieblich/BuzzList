@@ -1,7 +1,7 @@
 <li>
   Episode <%= episode.episode_number %>
   <h3>
-  <%= episode.title %>
+  <%= link_to(episode.title, episode_path(episode.id)) %>
   </h3>
   <p>
   <%= episode.summary %>

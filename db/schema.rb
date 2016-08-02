@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729034704) do
+ActiveRecord::Schema.define(version: 20160802010441) do
+
+  create_table "clips", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "episode_id"
+    t.string   "title"
+    t.string   "video_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "episodes", force: :cascade do |t|
     t.integer  "episode_number"
@@ -20,6 +29,15 @@ ActiveRecord::Schema.define(version: 20160729034704) do
     t.integer  "season_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.integer  "episode_id"
+    t.string   "character"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ratings", force: :cascade do |t|

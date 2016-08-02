@@ -1,0 +1,7 @@
+<li>
+  <%= clip.title %>
+<div class="embed-container">  
+  <%= embed(clip.video_id) %>
+</div> 
+added by <%= User.find(clip.user_id).name %>
+</li>

@@ -1,0 +1,10 @@
+<% provide(:title, @episode.season.show.title + " | " + @episode.title) %>
+<h1><%= @episode.title %></h1>
+<%= link_to "Add a quote", new_quote_path(episode: @episode)%>
+<ul class = "quotes">
+  <%= render @quotes %>
+</ul>
+<%= link_to "Add a clip", new_clip_path(episode: @episode) %>
+<ul class = "clips">
+  <%= render @clips %>
+</ul>

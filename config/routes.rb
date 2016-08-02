@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   resources :shows
   resources :seasons
   resources :ratings
+  resources :episodes
+  resources :quotes
+  resources :clips
 end

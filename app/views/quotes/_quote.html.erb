@@ -1,0 +1,7 @@
+<li>
+  <p>
+    <strong><%= quote.character %></strong><br/>
+    <%= quote.content %><br/>
+    added by <%= User.find(quote.user_id).name %>
+  </p>
+</li>
