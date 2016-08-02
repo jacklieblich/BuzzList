@@ -1,7 +1,13 @@
 <li>
   <%= clip.title %>
-<div class="embed-container">  
-  <%= embed(clip.video_id) %>
-</div> 
-added by <%= User.find(clip.user_id).name %>
+  <div class="embed-container">  
+    <%= embed(clip.video_id) %>
+  </div> 
+  added by <%= User.find(clip.user_id).name %><br/>
+  <%= Like.where(likable_id: clip.id).count %> Likes
+  <% if Like.exists?(user_id: current_user, likable_type: 'clip', likable_id: clip.id) %>
+    <%= button_to "Unlike", like_path(type:'clip', id: clip.id), method: :delete %>
+    <% else %>
+      <%= button_to "Like", likes_path(type:'clip', id: clip.id) %>
+  <% end %>
 </li>

@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
   has_many :quotes
   has_many :clips
+  has_many :likes
 end
