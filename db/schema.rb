@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803184733) do
+ActiveRecord::Schema.define(version: 20160804210522) do
 
   create_table "clips", force: :cascade do |t|
     t.integer  "user_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160803184733) do
     t.integer  "season_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "buzzlisted"
   end
 
   create_table "likes", force: :cascade do |t|

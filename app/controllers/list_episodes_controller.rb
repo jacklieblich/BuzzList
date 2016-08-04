@@ -2,9 +2,11 @@ class ListEpisodesController < ApplicationController
 before_action :require_login
 
   def create
-    @show = Episode.find(params[:id]).season.show
+    @episode = Episode.find(params[:id])
+    @show = @episode.season.show
     @list = List.find_or_create_by(user_id: current_user.id, show_id: @show.id)
     @list_episode = @list.list_episodes.create(episode_id: params[:id], ranking: @list.list_episodes.size+1)
+    @episode.increment!(:buzzlisted, by = 1)
     redirect_to (:back)
   end
   
