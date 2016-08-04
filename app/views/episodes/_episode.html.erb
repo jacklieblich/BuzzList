@@ -6,4 +6,5 @@
   <p>
   <%= episode.summary %>
   </p>
+  <%= link_to_unless ListEpisode.exists?(list_id: List.find_by(user_id: current_user.id, show_id: episode.season.show_id), episode_id: episode.id), "Add to your BUZZLIST", list_episodes_path(id: episode.id), method: :post %>
 </li>

@@ -3,7 +3,7 @@
     <strong><%= quote.character %></strong><br/>
     <%= quote.content %><br/>
   </p>
-  added by <%= User.find(quote.user_id).name %><br/>
+  added by <%= link_to User.find(quote.user_id).name, user_path(User.find(quote.user_id)) %><br/>
   <%= Like.where(likable_id: quote.id).count %> Likes
   <% if Like.exists?(user_id: current_user, likable_type: 'quote', likable_id: quote.id) %>
     <%= button_to "Unlike", like_path(type:'quote', id: quote.id), method: :delete %>

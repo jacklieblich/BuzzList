@@ -1,0 +1,5 @@
+<%= content_tag_for :li, list_episode do %>
+  <span class = 'handle'>[drag]</span>
+  <%= link_to list_episode.episode.title, episode_path(list_episode.episode_id) %>
+  <%= link_to "Remove", list_episode_path(list_episode), method: :delete %>
+<% end %>

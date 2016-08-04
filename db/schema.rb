@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802232304) do
+ActiveRecord::Schema.define(version: 20160803184733) do
 
   create_table "clips", force: :cascade do |t|
     t.integer  "user_id"
@@ -41,6 +41,21 @@ ActiveRecord::Schema.define(version: 20160802232304) do
 
   add_index "likes", ["likable_type", "likable_id"], name: "index_likes_on_likable_type_and_likable_id"
   add_index "likes", ["user_id", "likable_id", "likable_type"], name: "index_likes_on_user_id_and_likable_id_and_likable_type", unique: true
+
+  create_table "list_episodes", force: :cascade do |t|
+    t.integer  "list_id"
+    t.integer  "episode_id"
+    t.integer  "ranking"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "show_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "quotes", force: :cascade do |t|
     t.integer  "episode_id"

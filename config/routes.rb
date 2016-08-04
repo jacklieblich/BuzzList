@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   resources :quotes
   resources :clips
   resources :likes
+  resources :lists
+  resources :list_episodes do
+    collection {post :sort }
+  end
 end
