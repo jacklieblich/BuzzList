@@ -1,0 +1,2 @@
+<% episode = Clip.find(activity.trackable.likable_id).episode %>
+liked a <%= activity.trackable.likable_type %> from <%= link_to episode.title, episode %>

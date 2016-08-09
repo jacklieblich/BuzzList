@@ -10,6 +10,14 @@ before_action :require_login
     redirect_to Episode.find(@clip.episode_id)
   end
   
+  def destroy
+    @clip = Clip.find(params[:id])
+    @activity = PublicActivity::Activity.find_by(trackable: @clip)
+    @activity.destroy
+    @clip.destroy
+    redirect_to (:back)
+  end
+  
   private
   
   def user_params

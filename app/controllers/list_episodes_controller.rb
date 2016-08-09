@@ -12,6 +12,9 @@ before_action :require_login
   
   def destroy
     @list_episode = ListEpisode.find(params[:id])
+    @list_episode.episode.decrement!(:buzzlisted, by =1)
+    @activity = PublicActivity::Activity.find_by(trackable: @list_episode)
+    @activity.destroy
     @list_episode.destroy
     redirect_to (:back)
   end

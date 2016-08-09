@@ -3,6 +3,9 @@
   <div class="embed-container">  
     <%= embed(clip.video_id) %>
   </div> 
+  <% if clip.user == current_user %>
+    <%= link_to 'delete clip', clip_path(clip.id), method: :delete %></br>
+  <% end %>
   added by <%= link_to User.find(clip.user_id).name, user_path(User.find(clip.user_id)) %><br/>
   <%= Like.where(likable_id: clip.id).count %> Likes
   <% if Like.exists?(user_id: current_user, likable_type: 'clip', likable_id: clip.id) %>

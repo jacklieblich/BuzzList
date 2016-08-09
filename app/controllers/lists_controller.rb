@@ -9,4 +9,10 @@ class ListsController < ApplicationController
     @list_episodes = @list.list_episodes.order('ranking')
   end
   
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    redirect_to(:back)
+  end
+  
 end

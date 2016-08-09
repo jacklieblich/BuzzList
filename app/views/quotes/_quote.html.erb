@@ -3,6 +3,9 @@
     <strong><%= quote.character %></strong><br/>
     <%= quote.content %><br/>
   </p>
+  <% if quote.user == current_user %>
+    <%= link_to 'delete quote', quote_path(quote.id), method: :delete %></br>
+  <% end %>
   added by <%= link_to User.find(quote.user_id).name, user_path(User.find(quote.user_id)) %><br/>
   <%= Like.where(likable_id: quote.id).count %> Likes
   <% if Like.exists?(user_id: current_user, likable_type: 'quote', likable_id: quote.id) %>

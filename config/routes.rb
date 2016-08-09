@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :shows
   resources :seasons
   resources :ratings
@@ -21,4 +25,5 @@ Rails.application.routes.draw do
   resources :list_episodes do
     collection {post :sort }
   end
+  resources :relationships, only: [:create, :destroy]
 end
