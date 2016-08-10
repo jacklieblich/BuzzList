@@ -1,4 +1,4 @@
-<li>
+<li id = 'list_episodes'>
   <%= link_to Show.find_by(id: list.show_id).title, list_path(list.id) %>
   <%= link_to 'Delete', list_path(list), method: :delete %>
 </li>

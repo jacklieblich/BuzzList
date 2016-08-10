@@ -7,13 +7,13 @@
 
 <% if Rating.exists?(user_id: current_user, show_id: @show.id) %>
   <% rating = Rating.find_by user_id: current_user, show_id: @show.id %>
-  <% params[:id] = rating.id %>
+  <% rating_id = rating.id %>
   <% rating_action = 'update' %>
   <% button_method = :patch %>
 <% end %>
 
 <% ["Love", "Like", "Hate"].each do |value| %>
-<%= button_to value, {controller: 'ratings', action: rating_action, rating: value, show: @show }, method: button_method %>
+<%= button_to value, {controller: 'ratings', action: rating_action, rating: value, show: @show, id: rating_id }, method: button_method %>
 <% end %>
 
 <% if @show.seasons.any? %>

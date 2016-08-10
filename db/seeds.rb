@@ -5,40 +5,48 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Show.create(title:"It's Always Sunny in Philadelphia", poster: "http://www.impawards.com/tv/posters/its_always_sunny_in_philadelphia_ver5_xlg.jpg")
 
-for i in 1..11
-  Show.find_by(id:1).seasons.create(season_number: i)
-end
+#family guy, curb, sunny, office, rick and morty, south park, entourage, bojack, archer, game of thrones, breaking bad
+serieses = ['0182576', '0264235', '0472954', '0386676', '2861424', '0121955', '0387199', '3398228', '1486217', '0944947', '0903747']
 
-
-i = 1
-j = 1
-sunny = Imdb::Serie.new("0472954")
-until i > 11
-  until j > sunny.season(i).episodes.size
-    Show.find_by(id: 1).seasons.find_by(id: i).episodes.create(episode_number: j, title: sunny.season(i).episode(j).title, summary:sunny.season(i).episode(j).plot)
-    j +=1
+serieses.each do |series|
+  imdb_show = Imdb::Serie.new(series)
+  show = Show.create(title: imdb_show.title.chomp('"').reverse.chomp('"').reverse, poster: imdb_show.poster)
+  i = 1
+  until i > imdb_show.seasons.size
+    show.seasons.create(season_number: i)
+    i += 1
+    if show.title == "Family Guy" && i == 15
+      i = 17
+    end
+    if show.title == "South Park" && i == 20
+      i = 24
+    end
+    if show.title == "BoJack Horseman" && i == 4
+      i = 5
+    end
+    if show.title == "Archer" && i == 8
+      i = 11
+    end
+    if show.title == "Game of Thrones" && i == 7
+      i = 9
+    end
   end
+  i = 1
   j = 1
-  i +=1
-end
-
-office = Imdb::Serie.new("0386676")
-Show.create(title: office.title, poster: office.poster)
-i = 1
-until i > office.seasons.size
-  Show.find_by(title: office.title).seasons.create(season_number: i)
-  i += 1
-end
-i = 1
-j=1
-until i > office.seasons.size
-  until j > office.season(i).episodes.size
-    Show.find_by(title: office.title).seasons.find_by(season_number: i).episodes.create(episode_number: j, title: office.season(i).episode(j).title, summary: office.season(i).episode(j).plot)
-    j += 1
+  until i > show.seasons.count
+    season_episodes = imdb_show.season(i).episodes.size
+    if i == 1 && (show.title == "Family Guy" || show.title == "South Park" || show.title == "Archer")
+      j = 0
+      season_episodes -= 1
+    end
+    until j > season_episodes
+      puts i
+      puts j
+      show.seasons.find_by(season_number: i).episodes.create(episode_number: j, title: imdb_show.season(i).episode(j).title, summary: imdb_show.season(i).episode(j).plot)
+      j += 1
+    end
+    j = 1
+    i += 1
   end
-  j = 1
-  i += 1
 end
-
