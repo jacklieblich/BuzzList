@@ -1,0 +1,13 @@
+<% rating_action = 'create' %>
+<% button_method = :post %>
+
+<% if Rating.exists?(user_id: current_user, show_id: @show.id) %>
+  <% rating = Rating.find_by user_id: current_user, show_id: @show.id %>
+  <% rating_id = rating.id %>
+  <% rating_action = 'update' %>
+  <% button_method = :patch %>
+<% end %>
+
+<% ["Love", "Hate"].each do |value| %>
+<%= link_to value, {controller: 'ratings', action: rating_action, rating: value, show: @show, id: rating_id }, method: button_method, class: 'btn btn-default' %>
+<% end %>

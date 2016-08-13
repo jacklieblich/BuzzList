@@ -1,13 +1,12 @@
 <% provide(:title, "All Shows") %>
-<h1>All Shows</h1>
+<h1>Buzzlistable shows</h1>
 
 <%= form_tag shows_path, method: 'get' do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", name: nil %>
+    <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
   </p>
   <% end %>
-
 <ul class="shows">
   <%= render @shows %>
 </ul>

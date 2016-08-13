@@ -8,6 +8,8 @@ class RatingsController < ApplicationController
   
   def update
     @rating = Rating.find(params[:id])
+    @activity = PublicActivity::Activity.find_by(trackable: @rating.id)
+    PublicActivity::Activity.destroy(@activity)
     @rating.update_attribute(:rating, params[:rating])
     redirect_to Show.find(params[:show])
   end

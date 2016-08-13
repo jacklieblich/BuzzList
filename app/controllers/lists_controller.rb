@@ -11,6 +11,8 @@ class ListsController < ApplicationController
   
   def destroy
     @list = List.find(params[:id])
+    @activity = PublicActivity::Activity.find_by(trackable: @list)
+    @activity.destroy
     @list.destroy
     redirect_to(:back)
   end

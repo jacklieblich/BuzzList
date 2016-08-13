@@ -1,6 +1,6 @@
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-md-4">
+  <div class="row" id = "home_page">
+    <aside class="col-md-2">
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
@@ -8,19 +8,28 @@
         <%= render 'shared/stats' %>
       </section>
     </aside>
-    <div class="col-md-8">
-      <h3>Feed</h3>
+    <div class="col-md-7">
+      <% if current_user.following.any? %>
+        <h3>Your friends' activity</h3>
+        <% else %>
+          <h3><%= link_to "Follow Your Friends", users_path %> </h3>
+      <% end %>
       <%= render 'shared/feed' %>
+    </div>
+    <div class="col-md-3">
+      <%if current_user.lists.any? %>
+        <h3>My BuzzLists</h3>
+        <%= render current_user.lists %>
+      <% end %>
+      <h3>
+      <%= link_to "Create a BuzzList", shows_path, class: 'btn btn-primary' %>
+      </h3>
     </div>
   </div>
 <% else %>
 <div class="center jumbotron">
-  <h1>Welcome to the BuzzList</h1>
-
-  <h2>
-    This is the home page for the
-    <a href=#>BuzzList</a>
-  </h2>
+  <h1>Welcome to BuzzList</h1>
+  <h3> Make lists of the best episodes of all your favorite shows</h3>
 
   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 </div>

@@ -1,6 +1,7 @@
+<div class = "col-md-4">
 <li>
   <p>
-    <strong><%= quote.character %></strong><br/>
+    <strong><%= quote.character.capitalize %></strong><br/>
     <%= quote.content %><br/>
   </p>
   <% if quote.user == current_user %>
@@ -14,3 +15,4 @@
       <%= button_to "Like", likes_path(type:'quote', id: quote.id) %>
   <% end %>
 </li>
+</div>

@@ -13,8 +13,9 @@
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
-      <%= debug(params) if Rails.env.development? %>
       <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

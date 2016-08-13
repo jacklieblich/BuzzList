@@ -12,9 +12,14 @@ $gray-medium-light: #eaeaea;
 }
 
 /* universal */
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 body {
   padding-top: 60px;
+  margin-bottom: 40px;
 }
 
 section {
@@ -153,6 +158,17 @@ aside {
   padding: 0;
 }
 
+/* footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: #f5f5f5;
+}
+
+
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -179,4 +195,59 @@ input {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+/* feed */
+.activity{
+  padding: 10px;
+  margin: 5px;
+  border-bottom: 1px solid gray;
+  
+}
+/*home page */
+#home_page{
+  h3{
+    text-align: center;
+  }
+}
+/*shows*/
+
+.show_poster{
+  margin-top: 15%;
+  img{
+    max-width: 50%;
+  display: block;
+  margin:auto;
+  border-radius: 50%;
+  }
+}
+
+.show_navigation{
+  margin: 10%;
+  text-align: center;
+  
+    .clips_nav{
+      margin: 0 10% 0 10%;
+      color: green;
+    }
+    .quotes_nav{
+      color: red;
+    }
+}
+
+.shows{
+  list-style: none;
+  
+  li{
+   margin-top: 10px;
+   font-size: 20px;
+  }
+}
+.seasons{
+  list-style: none;
+  padding: 0;
+  
+}
+.items{
+  list-style: none;
 }

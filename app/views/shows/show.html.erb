@@ -1,29 +1,59 @@
 <% provide(:title, @show.title) %>
-<%= @show.title %> 
-<%= image_tag(@show.poster, size: "200") %>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class = 'show_poster'>
+      <%= image_tag(@show.poster) %>
+    </div>
+    <h1><%= @show.title %></h1>
+  </div>
+</div>
 
-<% rating_action = 'create' %>
-<% button_method = :post %>
+<div class="row">
+  <div class='col-md-4 col-md-offset-4'>
+    <div class="progress">
+      <% total_ratings = @show.ratings.count %>
+      <% if total_ratings == 0 %>
+        <% total_ratings = 1 %>
+      <% end %>
+      <div class="progress-bar progress-bar-success" style="width: <%= ((@show.ratings.where(rating: 'Love').count)*100)/total_ratings %>%">
+      </div>
+      <div class="progress-bar progress-bar-warning" style="width: <%= ((@show.ratings.where(rating: 'Like').count)*100)/total_ratings %>%">
+      </div>
+      <div class="progress-bar progress-bar-danger" style="width: <%= ((@show.ratings.where(rating: 'Hate').count)*100)/total_ratings %>%">
+      </div>
+    </div>
+  </div>
+  <div class = 'col-md-2'>
+    (<%= (@show.ratings.where(rating: 'Love').count) %> Love/<%=(@show.ratings.where(rating: 'Hate').count) %> Hate)
+  </div>
+</div>
 
-<% if Rating.exists?(user_id: current_user, show_id: @show.id) %>
-  <% rating = Rating.find_by user_id: current_user, show_id: @show.id %>
-  <% rating_id = rating.id %>
-  <% rating_action = 'update' %>
-  <% button_method = :patch %>
-<% end %>
+<div class = "row">
+  <div class = "col-md-2 col-md-offset-5">
+    <div class="btn-group btn-group-justified" role="group">
+      <%= render 'rating' %>
+    </div>
+  </div>
+</div>
 
-<% ["Love", "Like", "Hate"].each do |value| %>
-<%= button_to value, {controller: 'ratings', action: rating_action, rating: value, show: @show, id: rating_id }, method: button_method %>
-<% end %>
+<div class = "row">
+  <div class = "col-md-4 col-md-offset-4">
+    <div class = 'show_navigation'>
+       <%= link_to @seasons.count.to_s + " Seasons", show_path(items: 'episodes') %>
+       <%= link_to Clip.where(episode_id: Episode.where(season_id: @seasons)).count.to_s + " Clips", show_path(items: 'clips') , class: "clips_nav"%>
+       <%= link_to  Quote.where(episode_id: Episode.where(season_id: @seasons)).count.to_s + " Quotes", show_path(items: 'quotes'), class: "quotes_nav" %>
+     </div>
+  </div>
+</div>
 
-<% if @show.seasons.any? %>
-  <h3>Seasons (<%= @show.seasons.count %>)</h3>
-  <ol class="seasons">
-    <%= render @seasons %>
-  </ol>
-<%end%>
-
-<h3>Best Episodes</h3>
-<ol class='best_episodes'>
-  <%= render @episodes %>
-</ol>
+<div class = "row">
+  <div class = 'col-md-12'>
+    <ol class= "nav nav-tabs nav-justified">
+      <li class = <%= "active" if params[:season_id].class != String %>><%= link_to 'Best', show_path(season_id: @seasons.ids) %></li>
+      <%= render @seasons %>
+    </ol>
+    <ol class = 'items'>
+      <%= render @items %>
+    </ol>
+  </div>
+</div>

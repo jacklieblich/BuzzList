@@ -1,13 +1,17 @@
 <li>
-  Episode <%= episode.episode_number %>
   <h3>
-  <%= link_to(episode.title, episode_path(episode.id)) %>
+    <%= link_to(episode.title, episode_path(episode.id)) %>
+    <% unless ListEpisode.exists?(list_id: List.find_by(user_id: current_user, show_id: episode.season.show_id), episode_id: episode.id)%>
+      <%= link_to  "Add to your BUZZLIST", list_episodes_path(id: episode.id), method: :post, class: "btn btn-sm btn-primary" %></br>
+    <% end %>
   </h3>
   <p>
-  <%= episode.summary %>
+    <%= episode.summary %>
   </p>
-  <%= link_to_unless ListEpisode.exists?(list_id: List.find_by(user_id: current_user, show_id: episode.season.show_id), episode_id: episode.id), "Add to your BUZZLIST", list_episodes_path(id: episode.id), method: :post %></br>
-  <% if episode.buzzlisted %>
-    buzzlisted <%= episode.buzzlisted %> times
-  <% end %>
+  
+  <strong>
+    <% if episode.buzzlisted %>
+      buzzlisted <%= pluralize(episode.buzzlisted, 'time') %>
+    <% end %>
+  </strong>
 </li>

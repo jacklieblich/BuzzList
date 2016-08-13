@@ -13,7 +13,9 @@ before_action :require_login
   def destroy
     @clip = Clip.find(params[:id])
     @activity = PublicActivity::Activity.find_by(trackable: @clip)
-    @activity.destroy
+    PublicActivity::Activity.destroy(@activity.id)
+    @activities = PublicActivity::Activity.where(trackable: Like.where(likable_id: @clip))
+    PublicActivity::Activity.destroy(@activities.ids)
     @clip.destroy
     redirect_to (:back)
   end
