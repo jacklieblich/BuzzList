@@ -9,10 +9,10 @@
   <% end %>
   added by <%= link_to User.find(quote.user_id).name, user_path(User.find(quote.user_id)) %><br/>
   <%= Like.where(likable_id: quote.id).count %> Likes
-  <% if Like.exists?(user_id: current_user, likable_type: 'quote', likable_id: quote.id) %>
-    <%= button_to "Unlike", like_path(type:'quote', id: quote.id), method: :delete %>
+  <% if Like.exists?(user_id: current_user, likable_type: 'Quote', likable_id: quote.id) %>
+    <%= button_to "Unlike", like_path(type:'Quote', id: quote.id), method: :delete %>
     <% else %>
-      <%= button_to "Like", likes_path(type:'quote', id: quote.id) %>
+      <%= button_to "Like", likes_path(type:'Quote', id: quote.id) %>
   <% end %>
 </li>
 </div>

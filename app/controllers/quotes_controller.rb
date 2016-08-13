@@ -11,10 +11,8 @@ before_action :require_login
   
   def destroy
     @quote = Quote.find(params[:id])
-    @activity = PublicActivity::Activity.find_by(trackable: @quote)
-    PublicActivity::Activity.destroy(@activity.id)
-    @activities = PublicActivity::Activity.where(trackable: Like.where(likable_id: @quote))
-    PublicActivity::Activity.destroy(@activities.ids)
+    #@activities = PublicActivity::Activity.where(trackable: Like.where(likable_id: @quote))
+    #PublicActivity::Activity.destroy(@activities.ids)
     @quote.destroy
     redirect_to (:back)
   end

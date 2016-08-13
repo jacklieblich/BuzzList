@@ -8,7 +8,7 @@
         <%= render 'shared/stats' %>
       </section>
     </aside>
-    <div class="col-md-7">
+    <div class="col-md-6">
       <% if current_user.following.any? %>
         <h3>Your friends' activity</h3>
         <% else %>
@@ -16,10 +16,12 @@
       <% end %>
       <%= render 'shared/feed' %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <%if current_user.lists.any? %>
         <h3>My BuzzLists</h3>
+        <ul class = "buzzlists">
         <%= render current_user.lists %>
+        </ul>
       <% end %>
       <h3>
       <%= link_to "Create a BuzzList", shows_path, class: 'btn btn-primary' %>

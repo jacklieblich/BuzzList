@@ -8,9 +8,9 @@
   <% end %>
   added by <%= link_to User.find(clip.user_id).name, user_path(User.find(clip.user_id)) %><br/>
   <%= Like.where(likable_id: clip.id).count %> Likes
-  <% if Like.exists?(user_id: current_user, likable_type: 'clip', likable_id: clip.id) %>
-    <%= button_to "Unlike", like_path(type:'clip', id: clip.id), method: :delete %>
+  <% if Like.exists?(user_id: current_user, likable_type: 'Clip', likable_id: clip.id) %>
+    <%= button_to "Unlike", like_path(type:'Clip', id: clip.id), method: :delete %>
     <% else %>
-      <%= button_to "Like", likes_path(type:'clip', id: clip.id) %>
+      <%= button_to "Like", likes_path(type:'Clip', id: clip.id) %>
   <% end %>
 </li>

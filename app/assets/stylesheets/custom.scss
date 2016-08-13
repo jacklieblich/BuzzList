@@ -210,6 +210,9 @@ input {
     text-align: center;
   }
 }
+.buzzlists{
+  list-style:none;
+}
 /*shows*/
 
 .show_poster{
@@ -239,8 +242,9 @@ input {
   list-style: none;
   
   li{
-   margin-top: 10px;
+   margin: 5%;
    font-size: 20px;
+   text-align: center;
   }
 }
 .seasons{

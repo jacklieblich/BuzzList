@@ -7,14 +7,15 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   
   has_many :ratings, dependent: :destroy
-  has_many :quotes
-  has_many :clips
-  has_many :likes
-  has_many :lists
+  has_many :quotes, dependent: :destroy
+  has_many :clips, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :lists, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
    # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
