@@ -1,17 +1,20 @@
-<li>
+<div class="episode" id="episode-<%= episode.id %>">
   <h3>
     <%= link_to(episode.title, episode_path(episode.id)) %>
+    </h3>
     <% unless ListEpisode.exists?(list_id: List.find_by(user_id: current_user, show_id: episode.season.show_id), episode_id: episode.id)%>
-      <%= link_to  "Add to your BUZZLIST", list_episodes_path(id: episode.id), method: :post, class: "btn btn-sm btn-primary" %></br>
+      <%= link_to  "Add to your BUZZLIST", list_episodes_path(id: episode.id), method: :post, class: "btn btn-sm btn-primary", remote: true %></br>
     <% end %>
-  </h3>
+  
   <p>
     <%= episode.summary %>
   </p>
-  
-  <strong>
-    <% if episode.buzzlisted %>
+
+  <% if episode.buzzlisted %>
+    <strong>
       buzzlisted <%= pluralize(episode.buzzlisted, 'time') %>
-    <% end %>
-  </strong>
-</li>
+    </strong></br>
+  <% end %>
+  <%= link_to Clip.where(episode_id: episode).count.to_s + " Clips", '#', class: "clips" %>
+  <%= link_to Quote.where(episode_id: episode).count.to_s + " Quotes", '#', class: "quotes" %>
+</div>

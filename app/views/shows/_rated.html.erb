@@ -1,0 +1,13 @@
+<% rating = Rating.find_by( user_id: current_user, show_id: @show.id) %>
+
+<% if rating.rating == "Love" %>
+  <% love_button = "btn btn-success" %>
+  <% hate_button = "btn btn-default" %>
+  <% else %>
+    <% love_button = "btn btn-default" %>
+    <% hate_button = "btn btn-danger" %>
+<% end %>
+
+<%= link_to "Love", rating_path(show: @show, rating: "Love", id: rating), method: :patch, remote: true, class: love_button, id: "Love" %>
+<%= link_to "Hate", rating_path(show: @show, rating: "Hate", id: rating), method: :patch, remote: true, class: hate_button, id: "Hate" %>
+

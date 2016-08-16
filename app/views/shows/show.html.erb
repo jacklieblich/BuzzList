@@ -1,59 +1,63 @@
 <% provide(:title, @show.title) %>
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <div class = 'show_poster'>
-      <%= image_tag(@show.poster, size: "250") %>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class='show_poster'>
+        <%= image_tag(@show.poster, size: "180") %>
+      </div>
+      <h1><%= @show.title %></h1>
     </div>
-    <h1><%= @show.title %></h1>
+  </div>
+
+  <div id="rating">
+    <div class="row">
+      <%= render 'rating_stats' %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 col-md-offset-5">
+        <div class="btn-group btn-group-justified" role="group">
+          <%= render 'rating_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div id = "show_navigation">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= link_to @seasons.count.to_s + " Seasons", show_path(items: 'Episode'), class: "season_nav"%>
+        <%= link_to Clip.where(episode_id: Episode.where(season_id: @seasons)).count.to_s + " Clips", show_path(items: 'Clip') , class: "clips_nav"%>
+        <%= link_to  Quote.where(episode_id: Episode.where(season_id: @seasons)).count.to_s + " Quotes", show_path(items: 'Quote'), class: "quotes_nav" %>
+        <% if List.find_by(show_id: @show, user_id: current_user) %>
+        <%= link_to  List.find_by(show_id: @show, user_id: current_user).episodes.count.to_s + " Buzzlisted Episodes", list_path(List.find_by(show_id: @show, user_id: current_user)), class: "list_nav" %>
+        <% end %>
+    </div>
   </div>
 </div>
-
-<div class="row">
-  <div class='col-md-4 col-md-offset-4'>
-    <div class="progress">
-      <% total_ratings = @show.ratings.count %>
-      <% if total_ratings == 0 %>
-        <% total_ratings = 1 %>
+  <div class="row">
+    <div class='col-md-12'>
+      <ol class="nav nav-tabs nav-justified">
+        <li class = <%="active" if params[:season_id].class !=String %>>
+          <%= link_to 'Best', show_path(items: params[:items]) %>
+        </li>
+        <%= render @seasons %>
+      </ol>
+    </div>
+  </div>
+  <div class="row" id="add_quote">
+    <div class="col-md-4 col-md-offset-4">
+      <% if params[:items] == 'Quote' %>
+        <%= link_to "Add a Quote", new_quote_path(show: @show), id: "new_link", remote: true, class: "btn btn-primary" %>
+        <% else if params[:items] == 'Clip'%>
+          <%= link_to "Add a Clip", new_clip_path(show: @show), id: "new_link", remote: true, class: "btn btn-primary" %>
+        <% end %>
       <% end %>
-      <div class="progress-bar progress-bar-success" style="width: <%= ((@show.ratings.where(rating: 'Love').count)*100)/total_ratings %>%">
-      </div>
-      <div class="progress-bar progress-bar-warning" style="width: <%= ((@show.ratings.where(rating: 'Like').count)*100)/total_ratings %>%">
-      </div>
-      <div class="progress-bar progress-bar-danger" style="width: <%= ((@show.ratings.where(rating: 'Hate').count)*100)/total_ratings %>%">
-      </div>
     </div>
   </div>
-  <div class = 'col-md-2'>
-    (<%= (@show.ratings.where(rating: 'Love').count) %> Love/<%=(@show.ratings.where(rating: 'Hate').count) %> Hate)
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-md-2 col-md-offset-5">
-    <div class="btn-group btn-group-justified" role="group">
-      <%= render 'rating' %>
-    </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-md-4 col-md-offset-4">
-    <div class = 'show_navigation'>
-       <%= link_to @seasons.count.to_s + " Seasons", show_path(items: 'episodes') %>
-       <%= link_to Clip.where(episode_id: Episode.where(season_id: @seasons)).count.to_s + " Clips", show_path(items: 'clips') , class: "clips_nav"%>
-       <%= link_to  Quote.where(episode_id: Episode.where(season_id: @seasons)).count.to_s + " Quotes", show_path(items: 'quotes'), class: "quotes_nav" %>
-     </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = 'col-md-12'>
-    <ol class= "nav nav-tabs nav-justified">
-      <li class = <%= "active" if params[:season_id].class != String %>><%= link_to 'Best', show_path(season_id: @seasons.ids) %></li>
-      <%= render @seasons %>
-    </ol>
-    <ol class = 'items'>
+  <% if params[:items] == "Episode" %>
+  <%= render @items %>
+  <% else %>
+    <div class='items'>
       <%= render @items %>
-    </ol>
-  </div>
-</div>
+    </div>
+  <% end %>

@@ -1,18 +1,15 @@
-<div class = "col-md-4">
-<li>
+<div class = "quote" id = "quote_<%= quote.id %>">
   <p>
-    <strong><%= quote.character.capitalize %></strong><br/>
-    <%= quote.content %><br/>
+    "<%= quote.content %>"</br>
+    -<strong><%= quote.character.capitalize %></strong>
   </p>
+  <div class = "uploader">
+    Uploaded by</br> <%= link_to gravatar_for(User.find(quote.user_id), size: "20") + User.find(quote.user_id).name, user_path(User.find(quote.user_id)) %><br/>
   <% if quote.user == current_user %>
-    <%= link_to 'delete quote', quote_path(quote.id), method: :delete %></br>
+    <%= link_to 'delete quote', quote_path(quote.id), method: :delete, data: {confirm: "you sure?" }, remote: true %>
   <% end %>
-  added by <%= link_to User.find(quote.user_id).name, user_path(User.find(quote.user_id)) %><br/>
-  <%= Like.where(likable_id: quote.id).count %> Likes
-  <% if Like.exists?(user_id: current_user, likable_type: 'Quote', likable_id: quote.id) %>
-    <%= button_to "Unlike", like_path(type:'Quote', id: quote.id), method: :delete %>
-    <% else %>
-      <%= button_to "Like", likes_path(type:'Quote', id: quote.id) %>
-  <% end %>
-</li>
+  </div>
+  <%= render partial: "shared/like_form", locals: {item_type: "Quote", item_id: quote.id} %>
+  <small>Season <%= quote.episode.season.season_number %>: <%= link_to quote.episode.title, quote.episode %></small>
+
 </div>

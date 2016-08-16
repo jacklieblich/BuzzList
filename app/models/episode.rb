@@ -4,4 +4,8 @@ class Episode < ActiveRecord::Base
   has_many :clips
   has_many :list_episodes
   has_many :lists, through: :list_episodes
+  
+  def episode_for_select
+    " Episode #{episode_number} #{title}"
+  end
 end

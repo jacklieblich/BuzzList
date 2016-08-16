@@ -1,3 +1,13 @@
 // Place all the styles related to the Ratings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#rating{
+    #Love:hover{
+        background-color:#5cb85c;
+        color: white;
+    }
+    #Hate:hover{
+        background-color: #d9534f;
+        color: white;
+    }
+}

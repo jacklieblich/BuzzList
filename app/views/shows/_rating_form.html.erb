@@ -1,0 +1,5 @@
+<% if Rating.exists?(user_id: current_user, show_id: @show.id) %>
+  <%= render 'rated' %>
+  <% else %>
+    <%= render 'rate' %>
+<% end %>

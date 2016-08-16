@@ -1,0 +1,15 @@
+<div class='col-md-4 col-md-offset-4'>
+  <div class="progress">
+    <% total_ratings = @show.ratings.count %>
+    <% if total_ratings == 0 %>
+      <% total_ratings = 1 %>
+    <% end %>
+    <div class="progress-bar progress-bar-success" style="width: <%= ((@show.ratings.where(rating: 'Love').count)*100)/total_ratings %>%">
+    </div>
+    <div class="progress-bar progress-bar-danger" style="width: <%= ((@show.ratings.where(rating: 'Hate').count)*100)/total_ratings %>%">
+    </div>
+  </div>
+</div>
+<div class = 'col-md-2'>
+  (<%= (@show.ratings.where(rating: 'Love').count) %> Love/<%=(@show.ratings.where(rating: 'Hate').count) %> Hate)
+</div>

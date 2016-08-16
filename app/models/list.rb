@@ -5,5 +5,5 @@ class List < ActiveRecord::Base
   belongs_to :show
   has_many :list_episodes, dependent: :destroy
   has_many :episodes, through: :list_episodes
-  
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 end

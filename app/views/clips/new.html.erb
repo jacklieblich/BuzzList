@@ -1,9 +1,0 @@
-<h1>add new clip</h1>
-<%= form_for(@clip) do |f|%>
-  <%= f.label :title %>
-  <%= f.text_field :title, required: true%>
-  <%= f.label 'youtube url' %>
-  <%= f.text_field :video_id, required: true%>
-  <%= f.hidden_field :episode_id, value: params[:episode] %>
-  <%= f.submit "Create" %>
-<% end %>

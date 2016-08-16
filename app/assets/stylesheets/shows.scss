@@ -1,3 +1,57 @@
 // Place all the styles related to the Shows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.show_poster{
+  margin-top: 15%;
+  img{
+    max-width: 50%;
+  display: block;
+  margin:auto;
+  border-radius: 50%;
+  }
+}
+
+#show_navigation{
+  margin: 2%;
+  text-align: center;
+  
+    .season_nav{
+    color: #428bca;
+    }
+    .clips_nav{
+      margin: 0 4% 0 8%;
+      color: #5cb85c;
+    }
+    .quotes_nav{
+      color: #d9534f;
+      margin: 0 0 0 4%;
+    }
+    .list_nav{
+      color: #5bc0de;
+      margin: 0 0 0 8%;
+    }
+}
+
+.shows{
+  list-style: none;
+  
+  li{
+   margin: 5%;
+   font-size: 20px;
+   text-align: center;
+  }
+}
+
+.seasons{
+  list-style: none;
+  padding: 0;
+  
+}
+
+#add_quote{
+  text-align: center;
+  margin: 1%;
+}
+#new_link{
+  width: 50%;
+}

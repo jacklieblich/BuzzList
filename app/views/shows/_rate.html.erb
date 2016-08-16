@@ -1,0 +1,3 @@
+<% ["Love", "Hate"].each do |value| %>
+  <%= link_to value, ratings_path(show: @show, rating: value), method: :post, remote: true, class: 'btn btn-default', id: value %>
+<% end %>

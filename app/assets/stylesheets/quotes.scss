@@ -1,3 +1,19 @@
 // Place all the styles related to the quotes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.quote{
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  margin: 1%;
+  background-color: white;
+  width: 31%;
+  padding: 1%;
+  text-align: center;
+  
+  .uploader{
+    float: left;
+    font-size: 12px;
+    color: #bbb;
+    white-space: nowrap;
+  }
+}
