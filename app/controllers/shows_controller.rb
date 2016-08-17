@@ -30,7 +30,7 @@ class ShowsController < ApplicationController
           if params[:items] == 'Clip'
             @items = Clip.where(episode_id: episodes)
             if best
-              @items = @items = @items.sort_by { |clip| clip.likes.count }
+              @items = @items.sort_by { |clip| clip.likes.count }
             end
             else
               params[:items] = 'Episode'
