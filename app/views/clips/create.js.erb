@@ -1,3 +1,4 @@
 $('#new_clip').remove();
 $('#new_link').show();
-$('.items').append( '<%= j render(@clip) %>');
+var $item = $('<%= j render(@clip) %>');
+$('.items').append($item).masonry('appended', $item);

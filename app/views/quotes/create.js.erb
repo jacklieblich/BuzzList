@@ -1,3 +1,4 @@
 $('#new_quote').remove();
 $('#new_link').show();
-$('.items').append( '<%= j render(@quote) %>');
+var $item = $('<%= j render(@quote) %>');
+$('.items').append($item).masonry('appended', $item);
