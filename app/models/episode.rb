@@ -1,4 +1,5 @@
 class Episode < ActiveRecord::Base
+  default_scope { order('episode_number ASC') }
   belongs_to :season
   has_many :quotes
   has_many :clips
