@@ -36,7 +36,7 @@ class ShowsController < ApplicationController
               params[:items] = 'Episode'
               @items = episodes
               if best
-                @items = @items.order('buzzlisted DESC').first(10)
+                @items = @items.where(buzzlisted: (1..10000).to_a).order('buzzlisted DESC')
               end
           end
       end
