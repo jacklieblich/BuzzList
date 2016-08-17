@@ -22,16 +22,12 @@ class ShowsController < ApplicationController
       
       if params[:items] == 'Quote'
         @items = Quote.where(episode_id: episodes)
-        if best
-          @items = @items.sort_by { |quote| quote.likes.count }
+        @items = @items.sort_by { |quote| quote.likes.count }.reverse
             
-        end
         else
           if params[:items] == 'Clip'
             @items = Clip.where(episode_id: episodes)
-            if best
-              @items = @items.sort_by { |clip| clip.likes.count }
-            end
+            @items = @items.sort_by { |clip| clip.likes.count }.reverse
             else
               params[:items] = 'Episode'
               @items = episodes
