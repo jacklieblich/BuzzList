@@ -1,3 +1,8 @@
-<li>
-  <%= link_to user.name, user %>
-</li>
+<div class = "col-md-3" id = "user">
+  <%= link_to gravatar_for(user) + user.name, user %></br>
+  <%= user.lists.count %> BuzzLists</br>
+  <% if user.clips.any? || user.quotes.any? %>
+  Added <%= user.clips.count %> clips</br>
+  and <%= user.quotes.count %> quotes
+  <% end %>
+</div>

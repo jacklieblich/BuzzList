@@ -15,6 +15,6 @@
       buzzlisted <%= pluralize(episode.buzzlisted, 'time') %>
     </strong></br>
   <% end %>
-  <%= link_to Clip.where(episode_id: episode).count.to_s + " Clips", '#', class: "clips" %>
-  <%= link_to Quote.where(episode_id: episode).count.to_s + " Quotes", '#', class: "quotes" %>
+  <%= link_to Clip.where(episode_id: episode).count.to_s + " Clips", episode_path(episode.id), class: "clips" %>
+  <%= link_to Quote.where(episode_id: episode).count.to_s + " Quotes", episode_path(episode.id), class: "quotes" %>
 </div>

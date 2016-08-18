@@ -1,5 +1,7 @@
 <% provide(:title, @list.show.title) %>
-<h1> <%= @list.user.name %>'s <%= @list.show.title%> BUZZLIST</h1>
+<div class = "container">
+<h1> <%= @list.user.name %>'s <%= @list.show.title%> BuzzList</h1>
 <ol id = "list_episodes" data-update-url = "<%= sort_list_episodes_url %>" >
     <%= render @list_episodes %>
 </ol>
+</div>

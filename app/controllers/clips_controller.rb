@@ -4,6 +4,7 @@ before_action :require_login
   def new
     @clip = Clip.new
     @show = Show.find(params[:show])
+    @episode = params[:episode]
   end
   
   def create

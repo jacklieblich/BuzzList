@@ -1,10 +1,13 @@
 <%= form_for @quote, remote: true do |f|%>
+  <% if @episode == nil %>
   <%= select_tag :season_id,  options_for_select(@show.seasons.collect{ |s| [s.season_for_select, s.id] }), prompt: "Select a Season", required: true, class: "form-control" %>
   <%= f.grouped_collection_select :episode_id, @show.seasons, :episodes, :season_for_select, :id ,:episode_for_select, {include_blank: true, required: true}, {class: "form-control"} %>
+  <% else %>
+  <%= f.hidden_field :episode_id, value: @episode %>
+  <% end %>
   <%= f.label :character, "Who said it?" %>
   <%= f.text_field :character, required: true, class: "form-control" %>
   <%= f.label :content, "Quote" %>
   <%= f.text_area :content, required: true, class: "form-control" %>
-  <%= hidden_field_tag :show, @show.id %>
   <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>

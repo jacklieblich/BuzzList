@@ -3,6 +3,7 @@ before_action :require_login
   def new
     @quote = Quote.new
     @show = Show.find(params[:show])
+    @episode = params[:episode]
   end
   
   def create

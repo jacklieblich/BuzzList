@@ -1,6 +1,10 @@
 <%= form_for @clip, remote: true do |f|%>
+  <% if @episode == nil %>
   <%= select_tag :season_id,  options_for_select(@show.seasons.collect{ |s| [s.season_for_select, s.id] }), prompt: "Select a Season", required: true, class: "form-control" %>
   <%= f.grouped_collection_select :episode_id, @show.seasons, :episodes, :season_for_select, :id ,:episode_for_select, {include_blank: true, required: true}, {class: "form-control"} %>
+  <% else %>
+  <%= f.hidden_field :episode_id, value: @episode %>
+  <% end %>
   <%= f.label :title %>
   <%= f.text_field :title, required: true, class: "form-control"%>
   <%= f.label 'youtube url' %>

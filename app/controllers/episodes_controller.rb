@@ -1,7 +1,7 @@
 class EpisodesController < ApplicationController
     def show
       @episode = Episode.find(params[:id])
-      @quotes = @episode.quotes
-      @clips = @episode.clips
+      items = @episode.quotes + @episode.clips
+      @items = items.sort_by{ |item| item.likes.count }.reverse
     end
 end

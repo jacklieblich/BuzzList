@@ -1,10 +1,19 @@
 <% provide(:title, @episode.season.show.title + " | " + @episode.title) %>
+<div class = "container" id = "episode-display">
+  <div class = "row">
 <h1>
   <%= @episode.title %>
 </h1>
-<%= link_to "Add a quote", new_quote_path(episode: @episode)%>
-<%= link_to "Add a clip", new_clip_path(episode: @episode) %>
+<div class="col-md-4 col-md-offset-4">
+<div id = "new_link">
+<%= link_to "Add a quote", new_quote_path(show: @episode.season.show, episode: @episode), remote: true, class: "btn btn-primary" %>
+<%= link_to "Add a clip", new_clip_path(show: @episode.season.show, episode: @episode), remote: true, class: "btn btn-primary" %>
+</div>
+</div>
+</div>
+<div class = "row">
 <div class='items'>
-  <%= render @quotes %>
-  <%= render @clips %>
+  <%= render @items %>
+</div>
+</div>
 </div>
