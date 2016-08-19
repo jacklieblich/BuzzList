@@ -3,7 +3,7 @@ class Show < ActiveRecord::Base
   has_many :ratings, dependent: :destroy  
   
   def self.search(query)
-      where("title like ?", "%#{query}%")
+      where("lower(title) like ?", "%#{query.downcase}%")
   end
   
 end
