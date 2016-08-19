@@ -1,7 +1,19 @@
 class UsersController < ApplicationController
   
   def index
+    if params[:id] == nil
     @users = User.all
+    @title = "All Users"
+    else
+      @user = User.find(params[:id])
+      if params[:follow_type] == "followers"
+        @users = @user.followers
+        @title = @user.name + "'s Followers"
+      else
+        @users = @user.following
+        @title = @user.name + " is Following"
+      end
+    end
   end
  
  def show
@@ -27,22 +39,6 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
   end
-  
-  def following
-    @title = "Following"
-    @user  = User.find(params[:id])
-    @users = @user.following
-    render 'show_follow'
-  end
-
-  def followers
-    @title = "Followers"
-    @user  = User.find(params[:id])
-    @users = @user.followers
-    render 'show_follow'
-  end
-  
-
   
   private
 

@@ -1,7 +1,7 @@
-<% provide(:title, "All Users") %>
+<% provide(:title, @title) %>
 <div class = "container">
 <div class = "row" id = "users">
-<h1>All Users</h1>
+<h1><%= @title %></h1>
 
   <%= render @users %>
 

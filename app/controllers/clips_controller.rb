@@ -19,8 +19,6 @@ before_action :require_login
   def destroy
     @clip = Clip.find(params[:id])
     @id = @clip.id
-    @activities = PublicActivity::Activity.where(trackable: Like.where(likable_id: @clip))
-    PublicActivity::Activity.destroy(@activities.ids)
     @clip.destroy
   end
   

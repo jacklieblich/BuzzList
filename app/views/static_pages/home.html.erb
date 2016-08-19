@@ -15,12 +15,10 @@
       <li class = <%= "active" if params[:feed] == "friends"%>><%= link_to "Your Friends", root_path(feed: "friends") %></li>
       </ul>
       <%= render 'shared/feed' %>
-      <% if !current_user.following.any? && params[:feed] == "friends" %>
-      <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
-      <% end %>
       <div class="text-center">
       <%= will_paginate @feed_items, renderer: BootstrapPagination::Rails%>
       </div>
+      <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
     </div>
     <div class="col-md-4" id = "my-buzzlists">
         <h3>My BuzzLists</h3>
