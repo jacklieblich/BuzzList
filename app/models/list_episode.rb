@@ -4,4 +4,12 @@ class ListEpisode < ActiveRecord::Base
   belongs_to :list
   belongs_to :episode
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
+  before_destroy :decrement_buzzlisted
+  
+  protected
+  
+  def decrement_buzzlisted
+    episode.decrement(:buzzlisted)
+    episode.save
+  end
 end
