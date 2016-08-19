@@ -1,5 +1,6 @@
 class QuotesController < ApplicationController
 before_action :require_login
+
   def new
     @quote = Quote.new
     @show = Show.find(params[:show])

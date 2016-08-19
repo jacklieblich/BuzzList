@@ -9,9 +9,15 @@ class ApplicationController < ActionController::Base
   
   def require_login
     unless logged_in?
-      store_location
-      flash[:error] = "You must be logged in"
-      redirect_to login_path
+      if request.xhr?
+        flash[:notice] = "You must be logged in"
+        flash.keep(:notice) 
+        render :js => "window.location = #{login_path.to_json}"
+        else
+        store_location
+        flash[:error] = "You must be logged in"
+        redirect_to login_path
+      end
     end
   end
   
