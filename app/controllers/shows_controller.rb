@@ -28,7 +28,7 @@ class ShowsController < ApplicationController
           @items = episodes
           if best
             #episode.buzzlisted = 0 on creation to work
-            @items = @items.order('buzzlisted DESC')
+            @items = @items.sort_by { |episode| episode.buzzlisted }.reverse
           end
       end
   end
