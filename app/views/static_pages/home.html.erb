@@ -23,8 +23,8 @@
       </div>
     </div>
     <div class="col-md-4" id = "my-buzzlists">
-      <%if current_user.lists.any? %>
         <h3>My BuzzLists</h3>
+        <%if current_user.lists.any? %>
         <ul class= "lists">
         <%= render current_user.lists %>
         </ul>

@@ -10,7 +10,7 @@
     <%= episode.summary %>
   </p>
 
-  <% if episode.buzzlisted %>
+  <% if episode.buzzlisted != 0 %>
     <strong>
       buzzlisted <%= pluralize(episode.buzzlisted, 'time') %>
     </strong></br>

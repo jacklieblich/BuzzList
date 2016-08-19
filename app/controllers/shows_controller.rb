@@ -27,6 +27,7 @@ class ShowsController < ApplicationController
           params[:items] = 'Episode'
           @items = episodes
           if best
+            #episode.buzzlisted = 0 on creation to work
             @items = @items.order('buzzlisted DESC')
           end
       end
