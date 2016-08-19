@@ -31,6 +31,15 @@ serieses.each do |series|
     if show.title == "Game of Thrones" && i == 7
       i = 9
     end
+    if show.title == "Curb Your Enthusiasm" && i == 9
+      i = 10
+    end
+    if show.title == "It's Always Sunny in Philadelphia" && i == 12
+      i = 15
+    end
+    if show.title == "Rick and Morty" && i == 3
+      i = 4
+    end
   end
   i = 1
   j = 1

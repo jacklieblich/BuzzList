@@ -20,20 +20,14 @@ class ShowsController < ApplicationController
       
       episodes = Episode.where(season_id: params[:season_id])
       
-      if params[:items] == 'Quote'
-        @items = Quote.where(episode_id: episodes)
-        @items = @items.sort_by { |quote| quote.likes.count }.reverse
-            
+      if params[:items] == 'media'
+        items = Quote.where(episode_id: episodes) + Clip.where(episode_id: episodes)
+        @items = items.sort_by { |item| item.likes.count }.reverse
         else
-          if params[:items] == 'Clip'
-            @items = Clip.where(episode_id: episodes)
-            @items = @items.sort_by { |clip| clip.likes.count }.reverse
-            else
-              params[:items] = 'Episode'
-              @items = episodes
-              if best
-                @items = @items.order('buzzlisted DESC')
-              end
+          params[:items] = 'Episode'
+          @items = episodes
+          if best
+            @items = @items.order('buzzlisted DESC')
           end
       end
   end

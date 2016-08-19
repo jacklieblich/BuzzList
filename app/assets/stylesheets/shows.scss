@@ -17,17 +17,14 @@
   
     .season_nav{
     color: #428bca;
+    margin: 0 4% 0 0;
     }
-    .clips_nav{
-      margin: 0 4% 0 8%;
+    .media_nav{
+      margin: 0 0 0 4%;
       color: #5cb85c;
     }
-    .quotes_nav{
-      color: #d9534f;
-      margin: 0 0 0 4%;
-    }
     .list_nav{
-      color: #5bc0de;
+      color: #d9534f;
       margin: 0 0 0 8%;
     }
 }
@@ -53,5 +50,8 @@
   margin: 1%;
 }
 #new_link{
-  width: 50%;
+  width: 100%;
+  .btn{
+    width: 49%;
+  }
 }
