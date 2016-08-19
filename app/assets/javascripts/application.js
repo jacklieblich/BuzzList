@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.flipster.min
 //= require jquery.turbolinks
 //= require bootstrap
 //= require turbolinks

@@ -1,4 +1,5 @@
 <% provide(:title, "All Shows") %>
+<div class = "container">
 <div class = "row">
   <div class = "col-md-6 col-md-offset-3">
     <h1>Buzzlistable shows</h1>
@@ -10,8 +11,14 @@
     <% end %>
   </div>
 </div>
-<div class = row >
-  <ul class="shows">
-    <%= render @shows %>
-  </ul>
+<div class="my-flipster">
+  <ul>
+  <% @shows.each do |show| %>
+  <li>
+<%= link_to (image_tag show.poster, size: "300"), show_path(show) %> 
+</li>
+<% end %>
+</ul>
+
+</div>
 </div>
