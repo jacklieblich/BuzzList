@@ -56,9 +56,11 @@
     </div>
   </div>
   <% if params[:items] == "Episode" %>
-  <%= render @items %>
+    <%= render @items %>
   <% else %>
-    <div class='items'>
+    <!--Masonry only on media-->
+    <div class='items transitions-enabled'>
+      <div class="grid-sizer"></div>
       <%= render @items %>
     </div>
   <% end %>

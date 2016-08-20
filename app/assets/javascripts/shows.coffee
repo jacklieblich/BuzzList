@@ -4,3 +4,4 @@
 $(document).on "turbolinks:load", ->
     $('.items').masonry
         itemSelector: '.quote'
+        isFitWidth: true

@@ -4,6 +4,9 @@
 .episode{
   border-bottom: 1px solid gray;
   padding-bottom: 1%;
+  h3{
+    text-align: left;
+  }
   .clips{
     color: green;
     margin-right: 3%;
@@ -16,7 +19,8 @@
   #new_link{
     width: 100%;
     .btn{
-      width: 49%;
+      width: 48%;
+      margin: 1%;
     }
   }
 }
