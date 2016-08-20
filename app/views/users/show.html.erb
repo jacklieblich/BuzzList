@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
-  <div class="container">
+  <div class="container" id = "user-profile">
     <div class="row">
-      <aside class="col-md-4">
+      <aside class="col-md-3">
         <section class="user_info">
           <h1>
         <%= gravatar_for @user %>
@@ -17,7 +17,7 @@
           <%= render 'shared/stats' %>
         </section>
       </aside>
-      <div class="col-md-8">
+      <div class="col-md-9" id = "user-buzzlists">
         <%= render 'follow_form' if logged_in? %>
           <% if @user.lists.any? %>
             <h3> <%=@user.name%>'s BUZZLISTS </h3>
@@ -25,6 +25,18 @@
               <%= render @lists %>
             </ul>
             <% end %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-md-12">
+        <ul class="nav nav-tabs" id = "user-added">
+          <li role="presentation" class="active"><a href = '#'>
+            <h4>Added by <%=@user.name%></h4></a>
+          </li>
+          </ul>
+          <div class='items'>
+            <%= render @items %>
+          </div>
       </div>
     </div>
   </div>

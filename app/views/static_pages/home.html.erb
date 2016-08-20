@@ -23,13 +23,11 @@
     <div class="col-md-4" id = "my-buzzlists">
         <h3>My BuzzLists</h3>
         <%if current_user.lists.any? %>
-        <ul class= "lists">
+        <div class="list-group">
         <%= render current_user.lists %>
-        </ul>
+        </div>
       <% end %>
-      <h3>
       <%= link_to "Create a BuzzList", shows_path, class: 'btn btn-primary' %>
-      </h3>
     </div>
   </div>
 </div>
@@ -37,8 +35,9 @@
 <div class="container">
 <div class="center jumbotron">
   <h1>Welcome to BuzzList</h1>
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %></br>
+  <div id = "sign-up">
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
   Already have an account? <%= link_to "Login", login_path %> 
 </div>
 <div class="my-flipster">

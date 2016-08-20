@@ -19,6 +19,8 @@ class UsersController < ApplicationController
  def show
    @user = User.find(params[:id])
    @lists = List.where(user_id: params[:id])
+   items = Quote.where(user_id: params[:id]) + Clip.where(user_id: params[:id])
+   @items = items.sort_by { |item| item.likes.count }.reverse
  end
  
   def new

@@ -1,19 +1,42 @@
 // Place all the styles related to the lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.lists{
-    padding: 0 3%;
+
+#buzzlist-show{
+.jumbotron{
+    .buzzlist-header{
+        text-align: center;
+        margin-bottom: 2%;
+    }
+    h1{
+        margin-top: 60px;
+        font-size: 30px;
+        letter-spacing: -1px;
+    }
     img{
-        margin-right: 1%;
-        width: 10%;
+        float: left;
+        height: 150px;
+        width: 150px;
+        border-radius: 3%;
     }
 }
-#list{
-    font-size: 16px;
-    padding: 3% 0;
-    border-bottom: 1px solid gray;
-    list-style: none;
-    .btn{
-        float: right;
+}
+#my-lists{
+    text-align: center;
+    img{
+        float: left;
+    }
+    h1{
+        margin-top: 0;
+    }
+    h2{
+        color: black;
+        font-size: 2em;
+    }
+    a:hover{
+        background: #337ab7;
+        h2{
+        color: white;
+        }
     }
 }

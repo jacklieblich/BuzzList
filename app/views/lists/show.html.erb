@@ -1,7 +1,23 @@
 <% provide(:title, @list.show.title) %>
-<div class = "container">
-<h1> <%= @list.user.name %>'s <%= @list.show.title%> BuzzList</h1>
-<ol id = "list_episodes" data-update-url = "<%= sort_list_episodes_url %>" >
+<div class = "container" id = "buzzlist-show">
+    <div class = "jumbotron">
+        <div class = "buzzlist-header">
+            <div class = "row">
+                <div class = "col-md-3">
+                    <%= image_tag @list.show.poster %>
+                </div>
+                <div class = "col-md-6" id = "buzzlist-owner">
+                    <h1> <%= @list.user.name %>'s BuzzList</h1>
+                </div>
+            </div>
+        
+
+</div>
+<ol class="list-group" id = "list_episodes" data-update-url = "<%= sort_list_episodes_url %>" >
     <%= render @list_episodes %>
 </ol>
+<% if current_user == @list.user %>
+  <%= link_to 'Delete List', list_path(@list), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" %>
+  <% end %>
+</div>
 </div>
