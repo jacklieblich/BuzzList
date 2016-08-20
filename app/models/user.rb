@@ -31,5 +31,8 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
   
+  def self.search(query)
+      (where("lower(name) like ?", "%#{query.downcase}%") + where("lower(email) like ?", "%#{query.downcase}%")).uniq
+  end
   
 end

@@ -21,19 +21,31 @@
     }
 }
 }
+ol li.list-group-item { 
+    list-style: decimal inside;
+    display: list-item;
+}
 #my-lists{
-    text-align: center;
+    //text-align: center;
+    .list-group-item{
+        height: 150px;
+    }
     img{
         float: left;
+        max-height: 100%;
+        max-width: 100%;
     }
     h1{
         margin-top: 0;
     }
     h2{
+        
         color: black;
         font-size: 2em;
+        text-align: center;
+        margin-top: 0px;
     }
-    a:hover{
+    .list-group-item:hover{
         background: #337ab7;
         h2{
         color: white;

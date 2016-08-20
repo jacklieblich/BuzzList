@@ -1,6 +1,5 @@
 <% if current_user == list_episode.list.user %>
   <%= content_tag_for :li, list_episode, class: "list-group-item" do %>
-    <%= list_episode.ranking %>.
     <%= link_to list_episode.episode.title, episode_path(list_episode.episode_id) %>
     <small>
       Season <%= list_episode.episode.season.season_number %> Episode <%= list_episode.episode.episode_number %>

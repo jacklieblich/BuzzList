@@ -16,10 +16,10 @@
         <section class="stats">
           <%= render 'shared/stats' %>
         </section>
-      </aside>
-      <div class="col-md-9" id = "user-buzzlists">
         <%= render 'follow_form' if logged_in? %>
-          <% if @user.lists.any? %>
+      </aside>
+      <div class="col-md-9" id = "my-lists">
+            <% if @user.lists.any? %>
             <h3> <%=@user.name%>'s BUZZLISTS </h3>
             <ul class="lists">
               <%= render @lists %>

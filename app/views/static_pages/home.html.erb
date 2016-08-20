@@ -1,15 +1,18 @@
 <% if logged_in? %>
 <div class = "container" id = "home-page">
   <div class="row">
-    <aside class="col-md-2" id = "user-info">
+    <div class="col-md-2">
+      <div id = "user-info">
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>
-    </aside>
-    <div class="col-md-6" id = "feed">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div id = "feed">
       <ul class="nav nav-tabs nav-justified">
       <li class = <%= "active" if params[:feed] == nil%>><%= link_to "Everyone", root_path %></li>
       <li class = <%= "active" if params[:feed] == "friends"%>><%= link_to "Your Friends", root_path(feed: "friends") %></li>
@@ -19,8 +22,10 @@
       <%= will_paginate @feed_items, renderer: BootstrapPagination::Rails%>
       </div>
       <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
+      </div>
     </div>
-    <div class="col-md-4" id = "my-buzzlists">
+    <div class="col-md-4">
+    <div id = "my-lists">
         <h3>My BuzzLists</h3>
         <%if current_user.lists.any? %>
         <div class="list-group">
@@ -28,6 +33,7 @@
         </div>
       <% end %>
       <%= link_to "Create a BuzzList", shows_path, class: 'btn btn-primary' %>
+    </div>
     </div>
   </div>
 </div>

@@ -1,23 +1,33 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#users{
-    #user{
-        margin: 0 0 1% 0;
-        padding: 0;
-        height: 80px;
-        
+#user-index{
+    #search-button{
+        margin-bottom: 2%;
+    }
+    #users{
+        #user{
+            margin: 0 0 1% 0;
+            padding: 0;
+        }
     }
 }
 #follow_form{
     margin-top: 1%;
 }
 #user-profile{
-    h3{
-        text-align: center;
+    .btn{
+        margin: 3% 0;
     }
-    h2{
-        text-align: center;
+    #my-lists{
+        
+        .list-group-item{
+            height: 100px;
+            h2{
+                font-size: 1.5em;
+            }
+        }
+        
     }
 }
 

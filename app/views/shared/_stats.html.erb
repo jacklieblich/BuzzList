@@ -1,4 +1,8 @@
 <% @user ||= current_user %>
+<% current_page?(controller: 'users', action: 'index') %>
+<% if current_page?(controller: 'users', action: 'index') %>
+<% @user = user %>
+<% end %>
 <div class="stats">
   <a href="<%= users_path(id: @user, follow_type: "following") %>">
     <strong id="following" class="stat">
