@@ -3,6 +3,26 @@
 
 /* mixins, variables, etc. */
 
+@media (max-width: 767px) {
+    .navbar-fixed-top {
+        position: relative;
+        top: auto;
+    }
+    .navbar-collapse {
+        max-height: none;
+    }
+    body {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 768px) {
+
+   body {
+        margin-top: 50px;
+    }
+}
+
 $gray-medium-light: #eaeaea;
 
 @mixin box_sizing {
@@ -18,7 +38,6 @@ html {
 }
 
 body {
-  padding-top: 50px;
   height: 100%;
 }
 .container{
