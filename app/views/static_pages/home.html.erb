@@ -40,7 +40,7 @@
 <% else %>
 <div class="container">
 <div class="center jumbotron">
-  <h1>Welcome to BuzzList</h1>
+  <h1 id = "weolcome">Welcome to BuzzList</h1>
   <div id = "sign-up">
     <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
   </div>
@@ -50,7 +50,7 @@
   <ul>
   <% @shows.each do |show| %>
   <li>
-<%= link_to (image_tag show.poster, size: "300"), show_path(show) %> 
+<%= link_to (image_tag show.poster, width: "250"), show_path(show) %> 
 </li>
 <% end %>
 </ul>

@@ -15,7 +15,7 @@
   <ul>
   <% @shows.each do |show| %>
   <li>
-<%= link_to (image_tag show.poster, size: "300"), show_path(show) %> 
+<%= link_to (image_tag show.poster, width: "300"), show_path(show) %> 
 </li>
 <% end %>
 </ul>

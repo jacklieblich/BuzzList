@@ -30,8 +30,11 @@
     <div class = "row">
       <div class = "col-md-12">
         <ul class="nav nav-tabs" id = "user-added">
-          <li role="presentation" class="active"><a href = '#'>
-            <h4>Added by <%=@user.name%></h4></a>
+          <li role="presentation" class= <%= "active" if params[:items] == nil %>>
+            <%= link_to "Added by " + @user.name, user_path %>
+          </li>
+          <li role="presentation" class= <%= "active" if params[:items] == 'liked' %>>
+            <%= link_to "Liked by " + @user.name, user_path(items: "liked") %>
           </li>
           </ul>
           <div class='items'>

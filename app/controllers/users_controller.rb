@@ -26,7 +26,13 @@ class UsersController < ApplicationController
  def show
    @user = User.find(params[:id])
    @lists = List.where(user_id: params[:id])
-   items = Quote.where(user_id: params[:id]) + Clip.where(user_id: params[:id])
+   if params[:items] == nil
+     items = Quote.where(user_id: params[:id]) + Clip.where(user_id: params[:id])
+     else
+       quote_ids = Like.where(user_id: params[:id], likable_type: 'Quote').collect { |like| like.likable_id }
+       clip_ids = Like.where(user_id: params[:id], likable_type: 'Clip').collect { |like| like.likable_id }
+       items = Quote.where(id: quote_ids) + Clip.where(id: clip_ids)
+   end
    @items = items.sort_by { |item| item.likes.count }.reverse
  end
  
