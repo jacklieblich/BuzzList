@@ -15,8 +15,6 @@
     }
     img{
         float: left;
-        height: 150px;
-        width: 150px;
         border-radius: 3%;
     }
 }
@@ -26,7 +24,6 @@ ol li.list-group-item {
     display: list-item;
 }
 #my-lists{
-    //text-align: center;
     .list-group-item{
         height: 150px;
     }
