@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808180823) do
+ActiveRecord::Schema.define(version: 20160821055305) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20160808180823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "list_episodes", ["episode_id", "list_id"], name: "index_list_episodes_on_episode_id_and_list_id", unique: true
 
   create_table "lists", force: :cascade do |t|
     t.integer  "user_id"
