@@ -4,7 +4,7 @@
         <div class = "buzzlist-header">
             <div class = "row">
                 <div class = "col-md-3">
-                    <%= image_tag(@list.show.poster, width: "125") %>
+                    <%= link_to image_tag(@list.show.poster, width: "125"), @list.show %>
                 </div>
                 <div class = "col-md-6" id = "buzzlist-owner">
                     <h1> <%= @list.user.name %>'s BuzzList</h1>
