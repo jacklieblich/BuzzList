@@ -1,9 +1,15 @@
 <% provide(:title, @episode.season.show.title + " | " + @episode.title) %>
   <div class="container" id="episode-display">
     <div class="row">
-      <h1>
-  <%= @episode.title %>
-</h1>
+      <div class = "col-md-6 col-md-offset-3" id = "show-image">
+        <%= link_to image_tag(@episode.season.show.poster, width: "100"), @episode.season.show %></br>
+        <%= link_to "Season " + @episode.season.season_number.to_s,  show_path(@episode.season.show, season_id: @episode.season) %> 
+        <h1>
+          <%= @episode.title %>
+        </h1>  
+      </div>
+    </div>
+    <div class = "row">
       <div class="col-md-4 col-md-offset-4">
         <div id="new_link">
           <%= link_to "Add a quote", new_quote_path(show: @episode.season.show, episode: @episode), remote: true, class: "btn btn-primary" %>

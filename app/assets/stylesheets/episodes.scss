@@ -16,6 +16,16 @@
   }
 }
 #episode-display{
+  #show-image{
+    margin-top: 10px;
+    text-align: center;
+    img{
+      //border-radius: 50%;
+    }
+    h1{
+      margin-top: 0;
+    }
+  }
   #new_link{
     width: 100%;
     .btn{
