@@ -1,1 +1,1 @@
-$("#like_for_quote_<%= j @like.likable_id.to_s %>").load(location.href + " #like_for_quote_<%= j @like.likable_id.to_s %>");
+$("#like_for_<%= j @like.likable_type %>_<%= j @like.likable_id.to_s %>").load(location.href + " #like_for_<%= j @like.likable_type %>_<%= j @like.likable_id.to_s %>");
