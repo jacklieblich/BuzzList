@@ -22,6 +22,7 @@ class ShowsController < ApplicationController
       
       if params[:items] == 'media'
         items = Quote.where(episode_id: episodes) + Clip.where(episode_id: episodes)
+        items.shuffle!
         @items = items.sort_by { |item| item.likes.count }.reverse
         else
           params[:items] = 'Episode'
