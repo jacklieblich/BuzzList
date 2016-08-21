@@ -1,4 +1,4 @@
-<div class = "like_button" id = "like_for_quote_<%= item_id %>" >
+<div class = "like_button" id = "like_for_<%=item_type%>_<%= item_id %>" >
 <% if Like.exists?(user_id: current_user, likable_type: item_type, likable_id: item_id) %>
   <%= link_to "", like_path(likable_type: item_type, likable_id: item_id), method: :delete, remote: true, class: "glyphicon glyphicon-heart" %>
   <% else %>
