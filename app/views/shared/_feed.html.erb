@@ -1,6 +1,6 @@
 <% @feed_items.each do |activity| %>
-<% if activity.key == "list_episode.update" && activity.trackable.ranking != 1 %>
-<% activity.destroy %>
+<% if activity.key == "list_episode.update" && activity.trackable.ranking != 1%>
+    <% activity.destroy %>
 <% else %>
   <div class = "activity">
     <%= link_to gravatar_for(activity.owner, size: 20), activity.owner %>
