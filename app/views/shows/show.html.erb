@@ -58,6 +58,9 @@
   </div>
   <% if params[:items] == "Episode" %>
   <%= render @items %>
+  <% if params[:season_id].class !=String %>
+  <%= will_paginate @items, renderer: BootstrapPagination::Rails%>
+  <% end %>
   <% else %>
   <!--Masonry only on media-->
   <div class='items transitions-enabled'>

@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  
+  require 'will_paginate/array'
   def index
     if params[:search]
       @shows = Show.search(params[:search])
@@ -29,7 +29,8 @@ class ShowsController < ApplicationController
           @items = episodes
           if best
             #episode.buzzlisted = 0 on creation to work
-            @items = @items.sort_by { |episode| episode.buzzlisted }.reverse
+            items = @items.sort_by { |episode| episode.buzzlisted }.reverse
+            @items = items.paginate(page: params[:page], per_page: 10)
           end
       end
   end
