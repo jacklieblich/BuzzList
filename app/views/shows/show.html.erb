@@ -23,17 +23,17 @@
     </div>
   </div>
 
-<div id = "show_navigation">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+  <div id = "show_navigation">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
         <%= link_to @seasons.count.to_s + " Seasons", show_path(items: 'Episode'), class: "season_nav"%>
         <%= link_to pluralize(Clip.where(episode_id: Episode.where(season_id: @seasons)).count.to_s, " Clip") + " & "  + pluralize(Quote.where(episode_id: Episode.where(season_id: @seasons)).count.to_s, " Quote"), show_path(items: 'media') , class: "media_nav"%>
         <% if List.find_by(show_id: @show, user_id: current_user) %>
         <%= link_to  pluralize(List.find_by(show_id: @show, user_id: current_user).episodes.count.to_s, " Buzzlisted Episode"), list_path(List.find_by(show_id: @show, user_id: current_user)), class: "list_nav" %>
         <% end %>
+      </div>
     </div>
   </div>
-</div>
 
   <div class="row">
     <div class='col-md-12'>
@@ -45,23 +45,24 @@
       </ol>
     </div>
   </div>
+  
   <div class="row" id="add_quote">
     <div class="col-md-4 col-md-offset-4">
       <% if params[:items] == 'media' %>
       <div id = "new_link">
         <%= link_to "Add a Quote", new_quote_path(show: @show), remote: true, class: "btn btn-primary" %>
-          <%= link_to "Add a Clip", new_clip_path(show: @show), remote: true, class: "btn btn-primary" %>
-          </div>
+        <%= link_to "Add a Clip", new_clip_path(show: @show), remote: true, class: "btn btn-primary" %>
+      </div>
       <% end %>
     </div>
   </div>
   <% if params[:items] == "Episode" %>
-    <%= render @items %>
+  <%= render @items %>
   <% else %>
-    <!--Masonry only on media-->
-    <div class='items transitions-enabled'>
-      <div class="grid-sizer"></div>
-      <%= render @items %>
-    </div>
-  <% end %>
+  <!--Masonry only on media-->
+  <div class='items transitions-enabled'>
+    <div class="grid-sizer"></div>
+    <%= render @items %>
   </div>
+  <% end %>
+</div>
