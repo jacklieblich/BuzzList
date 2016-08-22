@@ -33,6 +33,7 @@ class UsersController < ApplicationController
        clip_ids = Like.where(user_id: params[:id], likable_type: 'Clip').collect { |like| like.likable_id }
        items = Quote.where(id: quote_ids) + Clip.where(id: clip_ids)
    end
+   items.shuffle!
    @items = items.sort_by { |item| item.likes.count }.reverse
  end
  
