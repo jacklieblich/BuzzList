@@ -1,18 +1,10 @@
 class ShowsController < ApplicationController
   require 'will_paginate/array'
-  def index
-    if params[:search]
-      @shows = Show.search(params[:search])
-    else
-      @shows = Show.order('shows.title').all
-    end
-  end
     
   def show
       @show = Show.find(params[:id])
       @seasons= @show.seasons
       best = false
-      
       if params[:season_id] == nil
         params[:season_id] = @seasons
         best = true
@@ -30,7 +22,7 @@ class ShowsController < ApplicationController
           if best
             #episode.buzzlisted = 0 on creation to work
             items = @items.sort_by { |episode| episode.buzzlisted }.reverse
-            @items = items.paginate(page: params[:page], per_page: 10)
+            @items = items.first(15)
           end
       end
   end
