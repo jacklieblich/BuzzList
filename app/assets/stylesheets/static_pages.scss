@@ -14,7 +14,7 @@
 }
 
 #home-page{
-    
+
     .col-md-2, .col-md-6, .col-md-4{
         padding: 0;
     }
@@ -22,11 +22,12 @@
     width: 100%;
     background: #f1f1f1;
     padding-top: 20px;
-    .btn{
-        float: none;
-        margin: 0 auto;
-    }
-    #my-lists{
+
+.btn{
+    float: none;
+    margin: 0 auto;
+}
+#my-lists{
     border-radius: 3px;
     background: white;
     margin: 0 12px 0 6px;
@@ -55,7 +56,7 @@
     }
 }
 .pagination{
-    
+
 }
 }
 /* feed */
@@ -94,9 +95,9 @@
         padding-left: 12px;
     }
     .stats{
-    a{
-        padding: 0 7px;
-    }
+        a{
+            padding: 0 7px;
+        }
     }
     .user_info{
         margin-top: 0;
