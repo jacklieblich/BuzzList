@@ -1,7 +1,7 @@
 <div class = "quote" id = "quote_<%= quote.id %>">
   <p>
     "<%= quote.content %>"</br>
-    -<strong><%= quote.character.capitalize %></strong>
+    -<strong><%= quote.character.titleize %></strong>
   </p>
   <div class = "uploader">
     Uploaded by</br> <%= link_to gravatar_for(User.find(quote.user_id), size: "20") + User.find(quote.user_id).name, user_path(User.find(quote.user_id)) %><br/>
