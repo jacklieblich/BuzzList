@@ -1,4 +1,4 @@
-<% @feed_items.each do |activity| %>
+<% items.each do |activity| %>
 <% if activity.key == "list_episode.update" && activity.trackable.ranking != 1%>
     <% activity.destroy %>
 <% else %>

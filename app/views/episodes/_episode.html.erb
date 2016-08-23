@@ -3,7 +3,7 @@
     <%= link_to(episode.title, episode_path(episode.id)) %>
     </h3>
     <% unless ListEpisode.exists?(list_id: List.find_by(user_id: current_user, show_id: episode.season.show_id), episode_id: episode.id)%>
-      <%= link_to  "Add to your BUZZLIST", list_episodes_path(id: episode.id), method: :post, class: "btn btn-sm btn-primary", remote: true %></br>
+      <%= link_to  "I Love this Episode", list_episodes_path(id: episode.id), method: :post, class: "btn btn-sm btn-primary", remote: true %></br>
     <% end %>
   
   <p>

@@ -9,6 +9,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 gem 'responders', '~> 2.0'
 gem 'masonry-rails'
+gem 'wiki-api', git: "git://github.com/dblommesteijn/wiki-api.git"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record

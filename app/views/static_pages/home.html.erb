@@ -3,59 +3,113 @@
   <div class="row">
     <div class="col-md-2">
       <div id = "user-info">
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
+        <section class="user_info">
+          <%= render 'shared/user_info' %>
+        </section>
+        <section class="stats">
+          <%= render 'shared/stats' %>
+        </section>
       </div>
     </div>
+
     <div class="col-md-6">
-      <div id = "feed">
-      <ul class="nav nav-tabs nav-justified">
-      <li class = <%= "active" if params[:feed] == nil%>><%= link_to "Everyone", root_path %></li>
-      <li class = <%= "active" if params[:feed] == "friends"%>><%= link_to "Your Friends", root_path(feed: "friends") %></li>
-      </ul>
-      <%= render 'shared/feed' %>
-      <div class="text-center">
-      <%= will_paginate @feed_items, renderer: BootstrapPagination::Rails%>
-      </div>
-      <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
+      <div id = "my-lists">
+        <%if current_user.lists.any? %>
+        <ul class="nav nav-tabs nav-justified">
+          <li class="active"><a data-toggle="tab" href="#shows"><h3>Shows</h3></a></li>
+          <li><a data-toggle="tab" href="#lists"><h3>My BuzzLists</h3></a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="shows" class="tab-pane fade in active">
+        <%= form_tag root_path, method: 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search], class: "form-control" %>
+          <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+        </p>
+        <% end %>
+            <div class="my-flipster">
+              <ul>
+                <% @shows.each do |show| %>
+                <li>
+                  <%= link_to (image_tag show.poster, width: "250"), show_path(show) %> 
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <div id="lists" class="tab-pane fade">
+            <div class="list-group">
+              <%= render current_user.lists %>
+            </div>
+          </div>
+        </div>
+        <% else %>
+        <div id = "no-buzzlist-display">
+        <h1>Buzzlist Shows</h1>
+        <%= form_tag root_path, method: 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search], class: "form-control" %>
+          <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+        </p>
+        <% end %>
+        <div class="my-flipster">
+          <ul>
+            <% @shows.each do |show| %>
+            <li>
+              <%= link_to (image_tag show.poster, width: "250"), show_path(show) %> 
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        </div>
+        <% end %>
       </div>
     </div>
     <div class="col-md-4">
-    <div id = "my-lists">
-        <h3>My BuzzLists</h3>
-        <%if current_user.lists.any? %>
-        <div class="list-group">
-        <%= render current_user.lists %>
+      <div id = "feed">
+        <ul class="nav nav-tabs nav-justified">
+          <li class="active"><a data-toggle="tab" href="#everyone">Everyone</a></li>
+          <li><a data-toggle="tab" href="#friends">Friends</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="everyone" class="tab-pane fade in active">
+            <%= render partial: 'feed', locals: {items: @feed_items} %>
+            <div class="text-center">
+            <%= will_paginate @feed_items, renderer: BootstrapPagination::Rails%>
+          </div>
+          </div>
+          <div id="friends" class="tab-pane fade">
+            <%= render partial: 'feed', locals: {items: @friend_feed_items} %>
+            <div class="text-center">
+            <%= will_paginate @friend_feed_items, renderer: BootstrapPagination::Rails%>
+          </div>
+          </div>
+          <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
         </div>
-      <% end %>
-      <%= link_to "Create a BuzzList", shows_path, class: 'btn btn-primary' %>
-    </div>
+
+      </div>
     </div>
   </div>
-</div>
-<% else %>
-<div class="container">
-<div class="center jumbotron">
-  <h1 id = "weolcome">Welcome to BuzzList</h1>
-  <div id = "sign-up">
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
   </div>
-  Already have an account? <%= link_to "Login", login_path %> 
-</div>
-<div class="my-flipster">
-  <ul>
-  <% @shows.each do |show| %>
-  <li>
-<%= link_to (image_tag show.poster, width: "250"), show_path(show) %> 
-</li>
-<% end %>
-</ul>
+  <% else %>
+  <div class="container">
+    <div class="center jumbotron">
+      <h1 id = "weolcome">Welcome to BuzzList</h1>
+      <div id = "sign-up">
+        <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+      </div>
+      Already have an account? <%= link_to "Login", login_path %> 
+    </div>
+    <div class="my-flipster">
+      <ul>
+        <% @shows.each do |show| %>
+        <li>
+          <%= link_to (image_tag show.poster, width: "250"), show_path(show) %> 
+        </li>
+        <% end %>
+      </ul>
 
-</div>
+    </div>
 
-</div>
-<% end %>
+  </div>
+  <% end %>

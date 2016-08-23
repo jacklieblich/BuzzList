@@ -10,7 +10,7 @@
 #add-friends{
     display: block;
     margin:2% auto;
-    width: 30%;
+    width: 40%;
 }
 
 #home-page{
@@ -27,9 +27,21 @@
     #my-lists{
     border-radius: 3px;
     background: white;
-    padding: 12px 12px 12px 12px;
     margin: 0 12px 0 6px;
     text-align: center;
+
+    li h3{
+        margin: 0;
+        color: black;
+    }
+
+    .tab-content{
+        padding: 12px 12px 12px 12px;
+    }
+
+    #no-buzzlist-display{
+        padding: 12px 12px 12px 12px;
+    }
     
     .list-group-item{
         height: 100px;
