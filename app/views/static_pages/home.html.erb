@@ -81,7 +81,7 @@
           <div id="friends" class="tab-pane fade">
             <%= render partial: 'feed', locals: {items: @friend_feed_items} %>
             <div class="text-center">
-            <%= will_paginate @friend_feed_items, renderer: BootstrapPagination::Rails%>
+            <%= will_paginate @friend_feed_items, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">",renderer: BootstrapPagination::Rails%>
           </div>
           </div>
           <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
