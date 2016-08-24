@@ -13,7 +13,9 @@
       <div id = "notifications">
       <h4>Notifications</h4>
         <%= render partial: 'notifications', locals: {items: @notifications} %>
+        <div class="text-center">
         <%= will_paginate @notifications, inner_window: 0, outer_window: 0, previous_label: "<", next_label: ">",renderer: BootstrapPagination::Rails%>
+        </div>
       </div>
     </div>
 
