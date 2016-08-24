@@ -1,0 +1,7 @@
+<% items.each do |notification| %>
+<div class = "activity">
+    <%= link_to gravatar_for(notification.owner, size: 20), notification.owner %>
+    <%= link_to notification.owner.name, notification.owner if notification.owner %>
+    liked the <%= notification.trackable.likable_type.downcase %> that you added to <%= link_to notification.trackable.likable.episode.title, notification.trackable.likable.episode %>
+    </div>
+    <% end %>
