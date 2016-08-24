@@ -13,10 +13,12 @@
         <a href="http://gravatar.com/emails" target="_blank" rel="noopener" >change image</a>
         <% end %>
       </section>
+      <section id = "follow_status_<%= @user.id.to_s %>">
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>
-      <%= render 'follow_form' if logged_in? %>
+      <%= render partial:'follow_form', locals: {user: @user} if logged_in? %>
+      </section>
     </aside>
     <div class="col-md-9" id = "my-lists">
       <% if @user.lists.any? %>
