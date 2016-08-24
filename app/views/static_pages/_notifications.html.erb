@@ -2,6 +2,6 @@
 <div class = "activity">
     <%= link_to gravatar_for(notification.owner, size: 20), notification.owner %>
     <%= link_to notification.owner.name, notification.owner if notification.owner %>
-    liked the <%= notification.trackable.likable_type.downcase %> that you added to <%= link_to notification.trackable.likable.episode.title, notification.trackable.likable.episode %>
+    liked the <%= link_to notification.trackable.likable_type.downcase, show_path(notification.trackable.likable.episode.season.show, items: "media", anchor: notification.trackable.likable_type.downcase + "_" + notification.trackable.id.to_s) %> that you added to <%= link_to notification.trackable.likable.episode.title, notification.trackable.likable.episode %>
     </div>
     <% end %>

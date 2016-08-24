@@ -3,4 +3,4 @@
   <% else %>
     <% episode = Quote.find(activity.trackable.likable_id).episode %>
 <% end %>
-liked a <%= activity.trackable.likable_type.downcase %> from <%= link_to episode.title, episode %>
+liked a <%= link_to activity.trackable.likable_type.downcase, show_path(episode.season.show, items: "media", anchor: activity.trackable.likable_type.downcase + "_" + activity.trackable.id.to_s) %> from <%= link_to episode.title, episode %>

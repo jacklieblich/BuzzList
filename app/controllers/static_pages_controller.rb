@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  require 'will_paginate/array'
+  
   def home
     if logged_in?
       @feed_items = PublicActivity::Activity.all.paginate(page: params[:page], per_page: 10).order("created_at desc")
