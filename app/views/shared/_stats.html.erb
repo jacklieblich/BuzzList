@@ -18,7 +18,7 @@
   </a>
   <a href="<%= user_path(id: @user) %>">
     <strong id="karma" class="stat">
-      <%= Like.where(likable_id: @user.quotes, likable_type: "Quote").count + Like.where(likable_id: @user.clips, likable_type: "Clip").count %>
+      <%= @user.quote_likes.count + @user.clip_likes.count %>
     </strong>
     karma
   </a>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821171843) do
+ActiveRecord::Schema.define(version: 20160826165227) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160821171843) do
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.boolean  "viewed"
   end
 
   add_index "likes", ["likable_type", "likable_id"], name: "index_likes_on_likable_type_and_likable_id"
@@ -121,6 +122,21 @@ ActiveRecord::Schema.define(version: 20160821171843) do
     t.datetime "updated_at", null: false
     t.string   "thumbnail"
   end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.integer  "tagged_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.boolean  "viewed"
+  end
+
+  add_index "tags", ["taggable_type", "taggable_id"], name: "index_tags_on_taggable_type_and_taggable_id"
+  add_index "tags", ["tagged_id"], name: "index_tags_on_tagged_id"
+  add_index "tags", ["tagger_id", "tagged_id", "taggable_id", "taggable_type"], name: "index_tag_tagger_tagged_taggable", unique: true
+  add_index "tags", ["tagger_id"], name: "index_tags_on_tagger_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

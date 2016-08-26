@@ -22,4 +22,5 @@ Rails.application.routes.draw do
     collection {post :sort }
   end
   resources :relationships, only: [:create, :destroy]
+  resources :tags, only: [:new, :create]
 end

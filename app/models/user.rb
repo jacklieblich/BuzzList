@@ -16,6 +16,14 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
+  has_many :active_tags, class_name: "Tag", foreign_key: "tagger_id", dependent: :destroy
+  has_many :passive_tags, class_name: "Tag", foreign_key: "tagged_id", dependent: :destroy
+  has_many :taggers, through: :active_tags
+  has_many :taggeds, through: :passive_tags 
+  has_many :quote_likes, through: :quotes, source: :likes
+  has_many :clip_likes, through: :clips, source: :likes
+  #has_many :tagged_in_clips, through: :taggeds, source: :clips
+  #has_many :tagged_in_quotes, through: :taggeds, source: :quotes
 
    # Follows a user.
   def follow(other_user)
@@ -35,5 +43,5 @@ class User < ActiveRecord::Base
   def self.search(query)
       (where("lower(name) like ?", "%#{query.downcase}%") + where("lower(email) like ?", "%#{query.downcase}%")).uniq
   end
-  
+
 end

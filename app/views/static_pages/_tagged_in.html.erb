@@ -1,0 +1,5 @@
+<% @user_tagged.each do |tag| %>
+<div class = "activity" id = viewed_<%= tag.viewed %>>
+<%= link_to gravatar_for(tag.tagger, size: "40") + tag.tagger.name, tag.tagger %> wants you to check out this <%= link_to tag.taggable_type.downcase, show_path(tag.taggable.episode.season.show, source: "tag", source_id: tag, items: "media", anchor: tag.taggable_type.downcase + "_" +  tag.taggable_id.to_s) %>
+</div>
+<% end %>

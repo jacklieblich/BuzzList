@@ -4,5 +4,6 @@
   <% else %>
     <%= link_to "", likes_path(likable_type: item_type, likable_id: item_id), method: :post, remote: true, class: "glyphicon glyphicon-heart-empty" %>
 <% end %>
+<%= link_to "Share", new_tag_path(media_type: item_type, media_id: item_id), class: "btn btn-success", id: "tag_for_" + item_type + "_" + item_id.to_s, remote: true %>
   (<%= Like.where(likable_id: item_id, likable_type: item_type).count.to_s %>)
 </div>

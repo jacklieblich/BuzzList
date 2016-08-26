@@ -1,0 +1,7 @@
+<%= form_for @tag, remote: true do |f|%>
+<%= f.collection_select :tagged_id, current_user.following, :id, :name, {required: true}, {class: "form-control"}%>
+<%= f.hidden_field :taggable_type, value: @media_type %>
+<%= f.hidden_field :taggable_id, value: @media_id %>
+<%= f.hidden_field :viewed, value: false %>
+<%= f.submit "Share", class: "btn btn-success", id: "submit" %>
+<% end %>
