@@ -8,7 +8,7 @@
           <%= render current_user %>
         </div>
         
-        <% if @notifications.any? %>
+        <% if @likes.any? || @tagged_in.an? %>
         <div class="col-xs-5" id = "notification-pills">
         <h4>Notifications</h4>
           <ul class="nav nav-pills nav-stacked" role="tablist">
@@ -19,16 +19,20 @@
         
         <div class="col-xs-12">
           <div class="tab-content">
-            <div id="tags" class="tab-pane fade items transitions-enabled">
+            <div id="tags" class="tab-pane fade">
+            <div class= "items transitions-enabled">
               <%= render @tagged_in %>
+              </div>
               <div class="text-center">
                 <%= will_paginate @tagged_in, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "shared" %>
               </div>
             </div>
-            <div id="likes" class="tab-pane fade items transitions-enabled">
-              <%= render @notifications %>
+            <div id="likes" class="tab-pane fade">
+            <div class= "items transitions-enabled">
+              <%= render @likes %>
+              </div>
               <div class="text-center">
-                <%= will_paginate @notifications, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "likes" %>
+                <%= will_paginate @likes, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "likes" %>
               </div>
             </div>
           </div>
