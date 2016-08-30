@@ -18,14 +18,14 @@
         </div>
         
         <div class="col-xs-12">
-          <div class="tab-content items">
-            <div id="tags" class="tab-pane fade">
+          <div class="tab-content">
+            <div id="tags" class="tab-pane fade items transitions-enabled">
               <%= render @tagged_in %>
               <div class="text-center">
                 <%= will_paginate @tagged_in, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "shared" %>
               </div>
             </div>
-            <div id="likes" class="tab-pane fade">
+            <div id="likes" class="tab-pane fade items transitions-enabled">
               <%= render @notifications %>
               <div class="text-center">
                 <%= will_paginate @notifications, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "likes" %>

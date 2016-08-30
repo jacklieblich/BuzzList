@@ -1,4 +1,4 @@
-$('#tag_for_<%= j @media_type %>_<%= j @media_id %>').hide().after('<%= j render("tags_form") %>');
+$('[id=tag_for_<%= j @media_type %>_<%= j @media_id %>]').hide().after('<%= j render("tags_form") %>');
 $('.items').masonry({
   itemSelector: '.quote',
   isFitWidth: true
