@@ -1,4 +1,8 @@
-<div class = "quote" id = "quote_<%= quote.id %>">
+<% if params[:controller] != "static_pages" %>
+<div class = "panel panel-default">
+<% end %>
+<div class="panel-body">
+<div id = "quote_<%= quote.id %>">
   <p>
     "<%= quote.content %>"</br>
     -<strong><%= quote.character.titleize %></strong>
@@ -11,5 +15,8 @@
   </div>
   <%= render partial: "shared/like_form", locals: {item_type: "Quote", item_id: quote.id} %>
   <small>Season <%= quote.episode.season.season_number %>: <%= link_to quote.episode.title, quote.episode %></small>
-
 </div>
+</div>
+<% if params[:controller] != "static_pages" %>
+</div>
+<% end %>

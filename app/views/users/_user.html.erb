@@ -1,16 +1,46 @@
-<div class = "col-md-3 col-sm-6" id = "user">
+<% if params[:controller] == "users" %>
+<div class="col-md-3 col-sm-4">
+<% end %>
+<div id = "user">
   <section>
-    <%= link_to gravatar_for(user) + user.name, user %></br>
+    <%= link_to gravatar_for(user), user%>
+    <p>
+    <%= link_to user.name, user %></br>
     <%= user.lists.count %> BuzzLists</br>
     <% if user.clips.any? || user.quotes.any? %>
     Added <%= user.clips.count %> clips</br>
     and <%= user.quotes.count %> quotes
     <% end %>
+    </p>
   </section>
   <section id = "follow_status_<%= user.id.to_s %>">
     <section class="stats">
-      <%= render partial: 'shared/stats', locals: {user: user} %>
+      <div class="stats">
+        <a href="<%= users_path(id: user, follow_type: "following") %>">
+          <strong id="following" class="stat">
+            <%= user.following.count %>
+          </strong>
+          following
+        </a>
+        <a href="<%= users_path(id: user, follow_type: "followers") %>">
+          <strong id="followers" class="stat">
+            <%= user.followers.count %>
+          </strong>
+          followers
+        </a>
+        <a href="<%= user_path(id: user) %>">
+          <strong id="karma" class="stat">
+            <%= user.quote_likes.count + user.clip_likes.count %>
+          </strong>
+          karma
+        </a>
+      </div>
     </section>
+    <% if false %>
     <%= render partial: 'follow_form', locals: {user: user} if logged_in? %>
-    </section>
-    </div>
+    <% end %>
+  </section>
+</div>
+<% if params[:controller] == "users" %>
+</div>
+<% end %>

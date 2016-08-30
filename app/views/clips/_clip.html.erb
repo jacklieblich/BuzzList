@@ -1,15 +1,24 @@
-<div class = "quote" id = "clip_<%= clip.id %>">
-  <strong><%= clip.title %></strong>
-  <div class = "embed-container">  
-    <%= embed(clip.video_id) %>
-  </div>
-  <div class = "uploader">
-    Uploaded by</br> <%= link_to gravatar_for(User.find(clip.user_id), size: "20") + User.find(clip.user_id).name, user_path(User.find(clip.user_id)) %></br>
-  <% if clip.user == current_user %>
-    <%= link_to 'delete clip', clip_path(clip.id), method: :delete, data: {confirm: "you sure?" }, remote: true %>
+<% if params[:controller] != "static_pages" %>
+<div class = "panel panel-default">
   <% end %>
+  <div class="panel-body">
+    <div id = "clip_<%= clip.id %>">
+      <strong><%= clip.title %></strong>
+      <div class = "embed-container">  
+        <%= embed(clip.video_id) %>
+      </div>
+      <div class = "uploader">
+        Uploaded by</br> <%= link_to gravatar_for(User.find(clip.user_id), size: "20") + User.find(clip.user_id).name, user_path(User.find(clip.user_id)) %></br>
+        <% if clip.user == current_user %>
+        <%= link_to 'delete clip', clip_path(clip.id), method: :delete, data: {confirm: "you sure?" }, remote: true %>
+        <% end %>
+      </div>
+      <%= render partial: "shared/like_form", locals: {item_type: "Clip", item_id: clip.id} %></br>
+      <small>Season <%= clip.episode.season.season_number %>: <%= link_to clip.episode.title, clip.episode %>
+        
+      </small>
+    </div>
   </div>
-  <%= render partial: "shared/like_form", locals: {item_type: "Clip", item_id: clip.id} %>
-  </br>
-  <small>Season <%= clip.episode.season.season_number %>: <%= link_to clip.episode.title, clip.episode %></small>
+<% if params[:controller] != "static_pages" %>
 </div>
+<% end %>

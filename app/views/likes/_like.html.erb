@@ -1,0 +1,8 @@
+<div class = "panel panel-default">
+<div class="panel-heading">
+<%= link_to gravatar_for(like.user, size: "20") + like.user.name, like.user %> liked the <%= like.likable_type.downcase%> you added
+</div>
+<div class="panel-body">
+<%= render like.likable %>
+</div>
+</div>

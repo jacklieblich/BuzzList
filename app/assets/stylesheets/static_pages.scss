@@ -1,9 +1,3 @@
-.jumbotron{
-    margin-top: 1%;
-}
-#weolcome{
-    margin-top: 0;
-}
 #add-friends{
     display: block;
     margin:2% auto;
@@ -11,126 +5,142 @@
 }
 
 #home-page{
-
-    .col-md-2, .col-md-6, .col-md-4{
-        padding: 0;
-    }
-    
     width: 100%;
     background: #f1f1f1;
     padding-top: 12px;
 
-.btn{
-    float: none;
+    .col-md-2, .col-md-4, .col-md-5, .col-md-6, .col-md-8, .col-md-10, col-md-12{
+        margin: 0;
+        padding: 0;
+    }
+    #user-bar, #outer-feed{
+        padding: 0 6px 12px 6px;
+    }
+
+    #user-specific{
+        background: white;
+        padding: 12px 0 0 0;
+        border-radius: 3px;
+
+        #user-info{
+
+            padding: 0 0 0 12px;
+            margin-bottom: 12px;
+
+            .stats{
+                a{
+                    padding: 0 7px;
+                    float: left;
+                    text-align: center;
+                }
+            }
+            strong{
+                display: block;
+            }
+
+        }
+        #notification-pills{
+            text-align: center;
+            padding-right: 12px;
+            a{
+                border-radius: 3px;
+                border:1px solid #ddd;
+                padding: 10px 0;
+
+            }
+        }
+    }
+    #feed{
+        background: white;
+        border-radius: 3px;
+        .nav-justified{
+            padding-bottom: 1%;
+            padding-top: 12px;
+            width: 60%;
+            margin: 0 auto
+        }
+
+    }
+
+    #notifications{
+        border-radius: 3px;
+        margin: 0 6px 12px 6px;
+        background-color: white;
+        text-align: center;
+
+        .activity{
+            margin: 0;
+            img{
+                height: 30px;
+            }
+        }
+        h4{
+            margin: 0;
+            padding-top: 6px;
+        }
+
+        #viewed_false{
+            background-color: #ADD8E6;
+        }
+    }
+    #my-lists{
+
+        ul{
+            margin-bottom: 12px;
+        }
+
+        .btn{
+            float: none;
+            margin:0 auto;
+        }
+
+        li h3{
+            margin: 0;
+        }
+
+        .my-flipster{
+            margin-top: 5%;
+        }
+
+        .nav .active a h3{
+            color: black;
+        }
+
+        .list-group-item{
+            height: 100px;
+            margin: 0 12px;
+
+            h2{
+                margin: 20px 0 10px 0;
+                font-size: 1.5em;
+            }
+        }
+    }
+    .pagination{
+
+    }
+}
+
+.panel{
+
+  margin: 7.5px;
+  width: 345px;
+  text-align: center;
+  
+  .uploader{
+    float: left;
+    font-size: 12px;
+    color: #bbb;
+    white-space: nowrap;
+}
+
+#user{
+    width: 80%;
     margin: 0 auto;
 }
 
-#notifications{
-    border-radius: 3px;
-    margin: 0 6px 12px 6px;
-    background-color: white;
-    text-align: center;
-
-    .activity{
-    margin: 0;
-    img{
-    height: 30px;
-    }
-}
-    h4{
-        margin: 0;
-        padding-top: 6px;
-    }
-
-    #viewed_false{
-        background-color: #ADD8E6;
-    }
-}
-#my-lists{
-    border-radius: 3px;
-    background: white;
-    margin: 0 6px 12px 6px;
-    text-align: center;
-    padding-bottom: 8%;
-
-    li h3{
-        margin: 0;
-    }
-
-    .my-flipster{
-        margin-top: 5%;
-    }
-
-    .nav .active a h3{
-        color: black;
-    }
-
-    .tab-content{
-        padding: 12px 12px 12px 12px;
-    }
 
 
-
-    #no-buzzlist-display{
-        padding: 12px 12px 12px 12px;
-    }
-    
-    .list-group-item{
-        height: 100px;
-        
-        h2{
-            margin: 20px 0 10px 0;
-            font-size: 1.5em;
-        }
-    }
-}
-.pagination{
-
-}
-}
-/* feed */
-#feed{
-    background: white;
-    padding-bottom: 12px;
-    margin: 0 6px 0 6px;
-    border-radius: 3px;
-    margin-bottom: 12px;
-    ul{
-        padding-bottom: 1%;
-    }
-    
-}
-.activity{
-  padding: 10px;
-  margin: 5px;
-  border-bottom: 1px solid gray;
-  
-}
-// user info
-#user-info{
-    background: white;
-    margin: 0 6px 12px 6px;
-    padding: 12px 0 0 0;
-    border-radius: 3px;
-    h1{
-        padding-left: 12px;
-        font-size: 22px;
-        margin: 0;
-        display: block;
-        letter-spacing: 0;
-        text-align: left;
-    }
-    img{
-        padding-left: 12px;
-    }
-    .stats{
-        a{
-            padding: 0 7px;
-        }
-    }
-    .user_info{
-        margin-top: 0;
-    }
 }
 .my-flipster{
     margin-top: 3%;

@@ -1,6 +1,6 @@
 <div class = "like_button" id = "like_for_<%=item_type%>_<%= item_id %>" >
 <% if Like.exists?(user_id: current_user, likable_type: item_type, likable_id: item_id) %>
-  <%= link_to "", like_path(likable_type: item_type, likable_id: item_id), method: :delete, remote: true, class: "glyphicon glyphicon-heart" %>
+  <%= link_to "", like_path(id: Like.find_by(user_id: current_user, likable_type: item_type, likable_id: item_id)), method: :delete, remote: true, class: "glyphicon glyphicon-heart" %>
   <% else %>
     <%= link_to "", likes_path(likable_type: item_type, likable_id: item_id), method: :post, remote: true, class: "glyphicon glyphicon-heart-empty" %>
 <% end %>

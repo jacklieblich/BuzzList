@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on 'turbolinks:load', ->
 	$('.items').masonry
-		itemSelector: '.quote'
+		itemSelector: '.panel'
 		isFitWidth: true
 	if location.href.includes("shows")
 		tag = $('#' + location.href.substring(location.href.indexOf('#') + 1) + '')

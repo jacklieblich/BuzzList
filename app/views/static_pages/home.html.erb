@@ -1,48 +1,73 @@
-<% if logged_in? %>
 <div class = "container" id = "home-page">
   <div class="row">
 
-    <div class="col-md-2" >
-      <div id = "user-info">
-        <section class="user_info">
-          <%= render 'shared/user_info' %>
-        </section>
-        <section class="stats">
-          <%= render 'shared/stats' %>
-        </section>
-      </div>
-      <% if @notifications.any? %>
-      <div id = "notifications">
+    <% if logged_in? %>
+    <div class="col-md-4" id = "user-bar">
+    <div class="col-md-12" id= "user-specific">
+        <div class="col-xs-7" id = "user-info">
+          <%= render current_user %>
+        </div>
+        
+        <% if @notifications.any? %>
+        <div class="col-xs-5" id = "notification-pills">
         <h4>Notifications</h4>
-        <ul class="nav nav-pills nav-stacked" role="tablist">
-          <li role="presentation" ><a data-toggle="pill" href="#tags">Shared With Me<span class="badge"><%= current_user.passive_tags.where(viewed: false).count %></span></a></li>
-          <li role="presentation"><a data-toggle="pill" href="#likes">Likes<span class="badge"><%= current_user.quote_likes.where(viewed: false).count + current_user.clip_likes.where(viewed: false).count %></span></a></li>
-        </ul>
-        <div class="tab-content">
-          <div id="tags" class="tab-pane fade">
-            <%= render 'tagged_in' %>
-          </div>
-          <div id="likes" class="tab-pane fade">
-            <%= render partial: 'notifications', locals: {items: @notifications} %>
-            <div class="text-center">
-              <%= will_paginate @notifications, inner_window: 0, outer_window: 0, previous_label: "<", next_label: ">",renderer: BootstrapPagination::Rails%>
+          <ul class="nav nav-pills nav-stacked" role="tablist">
+            <li role="presentation" ><a data-toggle="pill" href="#tags">Shared With Me<span class="badge"><%= current_user.passive_tags.where(viewed: false).count %></span></a></li>
+            <li role="presentation"><a data-toggle="pill" href="#likes">Likes<span class="badge"><%= current_user.quote_likes.where(viewed: false).count + current_user.clip_likes.where(viewed: false).count %></span></a></li>
+          </ul>
+        </div>
+        
+        <div class="col-md-12">
+          <div class="tab-content">
+            <div id="tags" class="tab-pane fade">
+              <%= render @tagged_in %>
+              <div class="text-center">
+                <%= will_paginate @tagged_in, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "shared" %>
+              </div>
+            </div>
+            <div id="likes" class="tab-pane fade">
+              <%= render @notifications %>
+              <div class="text-center">
+                <%= will_paginate @notifications, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "likes" %>
+              </div>
             </div>
           </div>
         </div>
+        <% end %>
 
-      </div>
-      <% end %>
-    </div>
-
-    <div class="col-md-6" >
-      <div id = "my-lists">
-        <%if current_user.lists.any? %>
-        <ul class="nav nav-tabs nav-justified">
-          <li class="active"><a data-toggle="tab" href="#shows"><h3>Shows</h3></a></li>
-          <li><a data-toggle="tab" href="#lists"><h3>My BuzzLists</h3></a></li>
-        </ul>
-        <div class="tab-content">
-          <div id="shows" class="tab-pane fade in active">
+        <div id = "my-lists">
+          <%if current_user.lists.any? %>
+          <ul class="nav nav-tabs">
+            <li class="active col-xs-6"><a data-toggle="tab" href="#lists"><h3>My BuzzLists</h3></a></li>
+            <li class="col-xs-6"><a data-toggle="tab" href="#shows"><h3>Shows</h3></a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="shows" class="tab-pane fade">
+              <%= form_tag root_path, method: 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search], class: "form-control" %>
+                <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+              </p>
+              <% end %>
+              <div class="my-flipster">
+                <ul>
+                  <% @shows.each do |show| %>
+                  <li>
+                    <%= link_to (image_tag show.poster, width: "125"), show_path(show) %> 
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <div id="lists" class="tab-pane fade in active">
+              <div class="list-group">
+                <%= render current_user.lists %>
+              </div>
+            </div>
+          </div>
+          <% else %>
+          <div id = "no-buzzlist-display">
+            <h1>Buzzlist Shows</h1>
             <%= form_tag root_path, method: 'get' do %>
             <p>
               <%= text_field_tag :search, params[:search], class: "form-control" %>
@@ -53,88 +78,50 @@
               <ul>
                 <% @shows.each do |show| %>
                 <li>
-                  <%= link_to (image_tag show.poster, width: "250"), show_path(show) %> 
+                  <%= link_to (image_tag show.poster, width: "125"), show_path(show) %> 
                 </li>
                 <% end %>
               </ul>
             </div>
           </div>
-          <div id="lists" class="tab-pane fade">
-            <div class="list-group">
-              <%= render current_user.lists %>
-            </div>
-          </div>
-        </div>
-        <% else %>
-        <div id = "no-buzzlist-display">
-          <h1>Buzzlist Shows</h1>
-          <%= form_tag root_path, method: 'get' do %>
-          <p>
-            <%= text_field_tag :search, params[:search], class: "form-control" %>
-            <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
-          </p>
           <% end %>
-          <div class="my-flipster">
-            <ul>
-              <% @shows.each do |show| %>
-              <li>
-                <%= link_to (image_tag show.poster, width: "250"), show_path(show) %> 
-              </li>
-              <% end %>
-            </ul>
-          </div>
         </div>
-        <% end %>
-      </div>
-    </div>
+        </div>
+        </div>
+    <% end %>
     
-    <div class="col-md-4">
-      <div id = "feed">
-        <ul class="nav nav-tabs nav-justified">
-          <li class="active"><a data-toggle="tab" href="#everyone">Everyone</a></li>
-          <li><a data-toggle="tab" href="#friends">Friends</a></li>
-        </ul>
-        <div class="tab-content">
-          <div id="everyone" class="tab-pane fade in active">
-            <%= render partial: 'feed', locals: {items: @feed_items} %>
-            <div class="text-center">
-              <%= will_paginate @feed_items, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails%>
+    <% if logged_in? %>
+    <div class="col-md-8" id= "outer-feed">
+      <% else %>
+      <div class="col-md-12" id = "outer-feed">
+        <% end %>
+        <div id = "feed">
+          <ul class="nav nav-pills nav-justified" id= "feed-filter">
+            <li class="active"><a data-toggle="pill" href="#everything">Everything</a></li>
+            <li><a data-toggle="pill" href="#your_stuff">Following</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="everything" class="tab-pane fade in active">
+              <div class='items transitions-enabled'>
+                <%= render partial: 'feed', locals: {items: @feed_items} %>
+              </div>
+              <div class="text-center">
+                <%= will_paginate @feed_items, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "all_feed" %>
+              </div>
+            </div>
+            <div id="your_stuff" class="tab-pane fade">
+              <% if logged_in? %>
+              <div class='items transitions-enabled'>
+                <%= render partial: 'feed', locals: {items: @friend_feed_items} %>
+              </div>
+              <div class="text-center">
+                <%= will_paginate @friend_feed_items, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">",renderer: BootstrapPagination::Rails, param_name: "my_feed" %>
+              </div>
+              <% end %>
+              <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
             </div>
           </div>
-          <div id="friends" class="tab-pane fade">
-            <%= render partial: 'feed', locals: {items: @friend_feed_items} %>
-            <div class="text-center">
-              <%= will_paginate @friend_feed_items, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">",renderer: BootstrapPagination::Rails%>
-            </div>
-          </div>
-          <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
         </div>
       </div>
     </div>
-
   </div>
-</div>
-
-<% else %>
-
-<div class="container">
-  <div class="center jumbotron">
-    <h1 id = "weolcome">Welcome to BuzzList</h1>
-    <div id = "sign-up">
-      <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-    </div>
-    Already have an account? <%= link_to "Login", login_path %> 
-  </div>
-  <div class="my-flipster">
-    <ul>
-      <% @shows.each do |show| %>
-      <li>
-        <%= link_to (image_tag show.poster, width: "250"), show_path(show) %> 
-      </li>
-      <% end %>
-    </ul>
-
-  </div>
-
-</div>
-<% end %>

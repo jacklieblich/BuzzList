@@ -1,1 +1,2 @@
-added a <%= link_to "clip", show_path(activity.trackable.episode.season.show, items: "media", anchor: "clip_" + activity.trackable.id.to_s) %> to <%= link_to activity.trackable.episode.title, activity.trackable.episode %>
+added a clip to <%= link_to activity.trackable.episode.season.show.title, activity.trackable.episode.season.show %>
+<%= render activity.trackable %>

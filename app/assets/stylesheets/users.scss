@@ -1,6 +1,45 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.gravatar {
+  /*float: left;*/
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+}
+
+.stats {
+  a {
+    padding: 0 10px;
+    border-left: 1px solid #eaeaea;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+  a {
+    padding: 0;
+  }
+}
+
+.users.follow {
+  padding: 0;
+}
 #user-index{
     #search-button{
         margin-bottom: 2%;
@@ -9,7 +48,26 @@
         #user{
             margin: 0 0 1% 0;
             padding: 0;
+            img{
+              margin-bottom: 10px;
+            }
+
+            .stats{
+                a{
+                    padding: 0 7px;
+                    float: left;
+                    text-align: center;
+                }
+            }
+            strong{
+                display: block;
+            }
         }
+    }
+}
+#user{
+    img{
+    float:left;
     }
 }
 #follow_form{

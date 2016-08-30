@@ -26,8 +26,8 @@
   <div id = "show_navigation">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= link_to @seasons.count.to_s + " Seasons", show_path(items: 'Episode'), class: "season_nav"%>
-        <%= link_to pluralize(Clip.where(episode_id: Episode.where(season_id: @seasons)).count.to_s, " Clip") + " & "  + pluralize(Quote.where(episode_id: Episode.where(season_id: @seasons)).count.to_s, " Quote"), show_path(items: 'media') , class: "media_nav"%>
+        <%= link_to "Episodes", show_path(items: 'Episode'), class: "season_nav"%>
+        <%= link_to pluralize((Clip.where(episode_id: Episode.where(season_id: @seasons)).count + Quote.where(episode_id: Episode.where(season_id: @seasons)).count).to_s, " Clips & Quotes"), show_path(items: 'media') , class: "media_nav"%>
         <% if List.find_by(show_id: @show, user_id: current_user) %>
         <%= link_to  pluralize(List.find_by(show_id: @show, user_id: current_user).episodes.count.to_s, " Buzzlisted Episode"), list_path(List.find_by(show_id: @show, user_id: current_user)), class: "list_nav" %>
         <% end %>
@@ -61,7 +61,6 @@
   <% else %>
   <!--Masonry only on media-->
   <div class='items transitions-enabled'>
-    <div class="grid-sizer"></div>
     <%= render @items %>
   </div>
   <% end %>
