@@ -1,8 +1,9 @@
 <div class = "panel panel-default">
-<div class="panel-heading">
+<div class="panel-heading <%= like.viewed %>">
 <%= link_to gravatar_for(like.user, size: "20") + like.user.name, like.user %> liked the <%= like.likable_type.downcase%> you added
+<div class="time_stamp"><%= time_ago_in_words(like.created_at) %> ago</div>
 </div>
-<div class="panel-body">
+<div class="panel-body ">
 <%= render like.likable %>
 </div>
 </div>

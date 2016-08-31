@@ -1,4 +1,5 @@
 created a BuzzList for <%= link_to activity.trackable.show.title, activity.trackable.show %>
+<div class="time_stamp"><%= time_ago_in_words(activity.trackable.created_at) %> ago</div>
 </div>
 <div class="panel-body">
 <%= render activity.trackable %>

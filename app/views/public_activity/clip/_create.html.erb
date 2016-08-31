@@ -1,3 +1,4 @@
-added a clip to <%= link_to activity.trackable.episode.season.show.title, activity.trackable.episode.season.show %>
+added a clip to <%= link_to activity.trackable.episode.season.show.title, activity.trackable.episode.season.show %></br>
+<div class="time_stamp"><%= time_ago_in_words(activity.trackable.created_at) %> ago</div>
 </div>
 <%= render activity.trackable %>

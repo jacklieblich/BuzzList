@@ -59,7 +59,13 @@
         }
 
     }
+    #liked, #tagged_in{
 
+        .false{
+            background-color: #f0f8ff;
+        }
+
+    }
     #notifications{
         border-radius: 3px;
         margin: 0 6px 12px 6px;
@@ -77,9 +83,7 @@
             padding-top: 6px;
         }
 
-        #viewed_false{
-            background-color: #ADD8E6;
-        }
+        
     }
     #my-lists{
 
@@ -124,6 +128,10 @@
   margin: 7.5px;
   width: 345px;
   text-align: center;
+
+  .panel-heading{
+    padding-bottom: 0;
+  }
   
   .uploader{
     float: left;
@@ -131,6 +139,11 @@
     color: #bbb;
     white-space: nowrap;
 }
+    
+    .time_stamp{
+        font-size: 12px;
+        color: #bbb;
+    }
 
 #user{
     width: 80%;

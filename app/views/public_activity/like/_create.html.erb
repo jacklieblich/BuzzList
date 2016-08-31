@@ -4,5 +4,6 @@
     <% episode = Quote.find(activity.trackable.likable_id).episode %>
 <% end %>
 liked a <%= activity.trackable.likable_type.downcase %> from <%= link_to episode.season.show.title, episode.season.show %>
+<div class="time_stamp"><%= time_ago_in_words(activity.trackable.created_at) %> ago</div>
 </div>
 <%= render activity.trackable.likable %>

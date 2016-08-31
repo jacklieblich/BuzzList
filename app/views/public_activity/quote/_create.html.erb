@@ -1,3 +1,4 @@
 added a quote to <%= link_to activity.trackable.episode.season.show.title, activity.trackable.episode.season.show %>
+<div class="time_stamp"><%= time_ago_in_words(activity.trackable.created_at) %> ago</div>
 </div>
 <%= render activity.trackable %>
