@@ -1,12 +1,17 @@
-<% items.each do |activity| %>
-<% if activity.key == "list_episode.update" && activity.trackable.ranking != 1%>
-    <% activity.destroy %>
-<% else %>
-  <div class = "panel panel-default">
-  <div class="panel-heading">
-    <%= link_to gravatar_for(activity.owner, size: 20), activity.owner %>
-    <%= link_to activity.owner.name, activity.owner if activity.owner %>
-      <%= render_activity activity %>
-  </div>
-  <% end %>
-<% end %>
+<div class='items transitions-enabled'>
+	<% items.each do |activity| %>
+	<% if activity.key == "list_episode.update" && activity.trackable.ranking != 1%>
+	<% activity.destroy %>
+	<% else %>
+	<div class = "panel panel-default">
+		<div class="panel-heading">
+			<%= link_to gravatar_for(activity.owner, size: 20), activity.owner %>
+			<%= link_to activity.owner.name, activity.owner if activity.owner %>
+			<%= render_activity activity %>
+		</div>
+		<% end %>
+		<% end %>
+</div>
+<div class="text-center">
+<%= will_paginate items, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: page_param %>
+</div>

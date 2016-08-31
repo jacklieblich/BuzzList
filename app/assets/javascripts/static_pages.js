@@ -6,9 +6,14 @@ $(document).on("turbolinks:load", function() {
 		fadeIn: 0
 	});
 	$('.nav-pills a').on('shown.bs.tab', function(){
-	$('.items').masonry({
-		itemSelector: '.panel',
-		isFitWidth: true
+		$('.items').masonry({
+			itemSelector: '.panel',
+			isFitWidth: true
+		});
 	});
 });
+$(document).on("click", ".pagination a", function(){
+	$(this).parent().parent().html("Loading Sick Shit . . .");
+	$.getScript(this.href);
+	return false;
 });

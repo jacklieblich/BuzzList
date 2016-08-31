@@ -1,1 +1,1 @@
-$("#follow_status_<%= j @user.id.to_s %>").load(location.href + " #follow_status_<%= j @user.id.to_s %>");
+$("[id=follow_status_<%= j @user.id.to_s %>] .follow_form").html("<%= j render partial: "users/follow_form", locals: {user: @user}%>");

@@ -36,9 +36,7 @@
         </a>
       </div>
     </section>
-    <% if false %>
-    <%= render partial: 'follow_form', locals: {user: user} if logged_in? %>
-    <% end %>
+    <%= render partial: 'users/follow_form', locals: {user: user} if logged_in? %>
   </section>
 </div>
 <% if params[:controller] == "users" %>

@@ -1,1 +1,5 @@
-created a <%= link_to 'Buzzlist', activity.trackable %> for <%= link_to activity.trackable.show.title, activity.trackable.show %>
+created a BuzzList for <%= link_to activity.trackable.show.title, activity.trackable.show %>
+</div>
+<div class="panel-body">
+<%= render activity.trackable %>
+</div>

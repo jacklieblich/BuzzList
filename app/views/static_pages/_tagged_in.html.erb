@@ -1,0 +1,6 @@
+<div class= "items transitions-enabled">
+	<%= render @tagged_in %>
+</div>
+<div class="text-center">
+	<%= will_paginate @tagged_in, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "shared" %>
+</div>

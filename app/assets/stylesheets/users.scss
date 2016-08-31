@@ -70,11 +70,17 @@
     float:left;
     }
 }
-#follow_form{
-    margin-top: 1%;
-    max-width: 66%
+.follow_form{
+    margin-top: 6px;
+    width: 100%;
+
 }
 #user-profile{
+  padding-top: 20px;
+
+  h3{
+    margin-top: 0;
+  }
     .btn{
         margin: 3% 0;
     }

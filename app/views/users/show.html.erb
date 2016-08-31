@@ -1,26 +1,8 @@
 <% provide(:title, @user.name) %>
 <div class="container" id = "user-profile">
   <div class="row">
-    <aside class="col-md-3">
-      <section class="user_info">
-        <h1>
-          <%= gravatar_for @user %>
-          <%= @user.name %>
-        </h1>
-        Added <%= @user.clips.count %> clips</br>
-        and <%= @user.quotes.count %> quotes</br>
-        <% if current_user == @user %>
-        <a href="http://gravatar.com/emails" target="_blank" rel="noopener" >change image</a>
-        <% end %>
-      </section>
-      <section id = "follow_status_<%= @user.id.to_s %>">
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
-      <%= render partial:'follow_form', locals: {user: @user} if logged_in? %>
-      </section>
-    </aside>
-    <div class="col-md-9" id = "my-lists">
+    <%= render @user %>
+    <div class="col-md-9 col-sm-8" id = "my-lists">
       <% if @user.lists.any? %>
       <h3> <%=@user.name%>'s BUZZLISTS </h3>
       <ul class="lists">

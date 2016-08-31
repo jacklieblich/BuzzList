@@ -3,37 +3,27 @@
 
     <% if logged_in? %>
     <div class="col-md-4" id = "user-bar">
-    <div class="col-md-12" id= "user-specific">
+      <div class="col-md-12" id= "user-specific">
         <div class="col-xs-7" id = "user-info">
           <%= render current_user %>
         </div>
         
-        <% if @likes.any? || @tagged_in.an? %>
+        <% if @likes.any? || @tagged_in.any? %>
         <div class="col-xs-5" id = "notification-pills">
-        <h4>Notifications</h4>
+          <h4>Notifications</h4>
           <ul class="nav nav-pills nav-stacked" role="tablist">
-            <li role="presentation" ><a data-toggle="pill" href="#tags">Shared With Me<span class="badge"><%= current_user.passive_tags.where(viewed: false).count %></span></a></li>
-            <li role="presentation"><a data-toggle="pill" href="#likes">Likes<span class="badge"><%= current_user.quote_likes.where(viewed: false).count + current_user.clip_likes.where(viewed: false).count %></span></a></li>
+            <li role="presentation" ><a data-toggle="pill" href="#tagged_in">Shared With Me<span class="badge"><%= current_user.passive_tags.where(viewed: false).count %></span></a></li>
+            <li role="presentation"><a data-toggle="pill" href="#liked">Likes<span class="badge"><%= current_user.quote_likes.where(viewed: false).where.not(user_id: current_user).count + current_user.clip_likes.where(viewed: false).where.not(user_id: current_user).count %></span></a></li>
           </ul>
         </div>
         
         <div class="col-xs-12">
           <div class="tab-content">
-            <div id="tags" class="tab-pane fade">
-            <div class= "items transitions-enabled">
-              <%= render @tagged_in %>
-              </div>
-              <div class="text-center">
-                <%= will_paginate @tagged_in, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "shared" %>
-              </div>
+            <div id="tagged_in" class="tab-pane fade">
+              <%= render "tagged_in" %>
             </div>
-            <div id="likes" class="tab-pane fade">
-            <div class= "items transitions-enabled">
-              <%= render @likes %>
-              </div>
-              <div class="text-center">
-                <%= will_paginate @likes, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "likes" %>
-              </div>
+            <div id="liked" class="tab-pane fade">
+              <%= render "liked" %>
             </div>
           </div>
         </div>
@@ -89,8 +79,8 @@
           </div>
           <% end %>
         </div>
-        </div>
-        </div>
+      </div>
+    </div>
     <% end %>
     
     <% if logged_in? %>
@@ -99,29 +89,19 @@
       <div class="col-md-12" id = "outer-feed">
         <% end %>
         <div id = "feed">
+        <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
           <ul class="nav nav-pills nav-justified" id= "feed-filter">
             <li class="active"><a data-toggle="pill" href="#everything">Everything</a></li>
             <li><a data-toggle="pill" href="#your_stuff">Following</a></li>
           </ul>
           <div class="tab-content">
             <div id="everything" class="tab-pane fade in active">
-              <div class='items transitions-enabled'>
-                <%= render partial: 'feed', locals: {items: @feed_items} %>
-              </div>
-              <div class="text-center">
-                <%= will_paginate @feed_items, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "all_feed" %>
-              </div>
+              <%= render partial: 'feed', locals: {items: @feed_items, page_param: "all_feed"} %>
             </div>
             <div id="your_stuff" class="tab-pane fade">
               <% if logged_in? %>
-              <div class='items transitions-enabled'>
-                <%= render partial: 'feed', locals: {items: @friend_feed_items} %>
-              </div>
-              <div class="text-center">
-                <%= will_paginate @friend_feed_items, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">",renderer: BootstrapPagination::Rails, param_name: "my_feed" %>
-              </div>
+                <%= render partial: 'feed', locals: {items: @friend_feed_items, page_param: "my_feed"} %>
               <% end %>
-              <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
             </div>
           </div>
         </div>
