@@ -2,66 +2,45 @@
   <div class="row">
 
     <% if logged_in? %>
-    <div class="col-md-4" id = "user-bar">
-      <div class="col-md-12" id= "user-specific">
-        <div class="col-xs-7" id = "user-info">
-          <%= render current_user %>
-          <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
-        </div>
-        
-        <% if @likes.any? || @tagged_in.any? %>
-        <div class="col-xs-5" id = "notification-pills">
-          <h4>Notifications</h4>
-          <ul class="nav nav-pills nav-stacked" role="tablist">
-            <li role="presentation" ><a data-toggle="pill" href="#tagged_in">Shared With Me<span class="badge"><%= current_user.passive_tags.where(viewed: false).count %></span></a></li>
-            <li role="presentation"><a data-toggle="pill" href="#liked">Likes<span class="badge"><%= current_user.quote_likes.where(viewed: false).where.not(user_id: current_user).count + current_user.clip_likes.where(viewed: false).where.not(user_id: current_user).count %></span></a></li>
-          </ul>
-        </div>
-        
-        <div class="col-xs-12" id = "notification-content">
-          <div class="tab-content">
-            <div id="tagged_in" class="tab-pane fade">
-              <%= render "tagged_in" %>
-            </div>
-            <div id="liked" class="tab-pane fade">
-              <%= render "liked" %>
-            </div>
-          </div>
-        </div>
-        <% end %>
+    <div class="col-md-4 col-xs-12" id = "user-bar">
+      <div class="col-xs-12" id= "user-specific">
+        <ul class="nav nav-tabs nav-justified">
+          <li class="active col-xs-4"><a data-toggle="tab" href="#me">Me</a></li>
+          <li class="col-xs-4"><a data-toggle="tab" href="#shows">Shows</a></li>
+          <% if current_user.lists.any? %>
+          <li class="col-xs-4"><a data-toggle="tab" href="#lists">My BuzzLists</a></li>
+          <% end %>
+        </ul>
+        <div class="tab-content">
 
-        <div id = "my-lists">
-          <%if current_user.lists.any? %>
-          <ul class="nav nav-tabs">
-            <li class="active col-xs-6"><a data-toggle="tab" href="#lists"><h3>My BuzzLists</h3></a></li>
-            <li class="col-xs-6"><a data-toggle="tab" href="#shows"><h3>Shows</h3></a></li>
-          </ul>
-          <div class="tab-content">
-            <div id="shows" class="tab-pane fade">
-              <%= form_tag root_path, method: 'get' do %>
-              <p>
-                <%= text_field_tag :search, params[:search], class: "form-control" %>
-                <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
-              </p>
-              <% end %>
-              <div class="my-flipster">
-                <ul>
-                  <% @shows.each do |show| %>
-                  <li>
-                    <%= link_to (image_tag show.poster, width: "125"), show_path(show) %> 
-                  </li>
-                  <% end %>
-                </ul>
+          <div id="me" class="tab-pane fade in active">
+            <div class="col-xs-7" id = "user-info">
+              <%= render current_user %>
+              <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
+            </div>
+            <% if @likes.any? || @tagged_in.any? %>
+            <div class="col-xs-5" id = "notification-pills">
+              <h4>Notifications</h4>
+              <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation" ><a data-toggle="pill" href="#tagged_in">Shared With Me<span class="badge"><%= current_user.passive_tags.where(viewed: false).count %></span></a></li>
+                <li role="presentation"><a data-toggle="pill" href="#liked">Likes<span class="badge"><%= current_user.quote_likes.where(viewed: false).where.not(user_id: current_user).count + current_user.clip_likes.where(viewed: false).where.not(user_id: current_user).count %></span></a></li>
+              </ul>
+            </div>
+            <div class="col-xs-12" id = "notification-content">
+              <div class="tab-content">
+                <div id="tagged_in" class="tab-pane fade">
+                  <%= render "tagged_in" %>
+                </div>
+                <div id="liked" class="tab-pane fade">
+                  <%= render "liked" %>
+                </div>
               </div>
             </div>
-            <div id="lists" class="tab-pane fade in active">
-              <div class="list-group">
-                <%= render current_user.lists %>
-              </div>
-            </div>
+            <% end %>
           </div>
-          <% else %>
-          <div id = "no-buzzlist-display">
+          
+          <div id="shows" class="tab-pane fade">
+          <div id= "my-lists">
             <%= form_tag root_path, method: 'get' do %>
             <p>
               <%= text_field_tag :search, params[:search], class: "form-control" %>
@@ -72,22 +51,33 @@
               <ul>
                 <% @shows.each do |show| %>
                 <li>
-                  <%= link_to (image_tag show.poster, width: "125"), show_path(show) %> 
+                  <%= link_to (image_tag show.poster, width: "125"), show_path(show, items: "media") %> 
                 </li>
                 <% end %>
               </ul>
             </div>
+            </div>
+          </div>
+          
+          <% if current_user.lists.any? %>
+          <div id="lists" class="tab-pane fade">
+          <div id = "my-lists">
+            <div class="list-group">
+              <%= render current_user.lists %>
+            </div>
+            </div>
           </div>
           <% end %>
+
         </div>
       </div>
     </div>
     <% end %>
-    
+
     <% if logged_in? %>
-    <div class="col-md-8" id= "outer-feed">
+    <div class="col-md-8 col-xs-12" id= "outer-feed">
       <% else %>
-      <div class="col-md-12" id = "outer-feed">
+      <div class="col-xs-12" id = "outer-feed">
         <% end %>
         <div id = "feed">
           <ul class="nav nav-pills nav-justified" id= "feed-filter">
@@ -100,11 +90,11 @@
             </div>
             <div id="your_stuff" class="tab-pane fade">
               <% if logged_in? %>
-                <%= render partial: 'feed', locals: {items: @friend_feed_items, page_param: "my_feed"} %>
+              <%= render partial: 'feed', locals: {items: @friend_feed_items, page_param: "my_feed"} %>
               <% end %>
             </div>
           </div>
         </div>
-      </div>
+    </div>
     </div>
   </div>

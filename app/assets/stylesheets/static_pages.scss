@@ -1,7 +1,7 @@
 #add-friends{
     float: left;
     margin-top: 12px;
-    }
+}
 
 #home-page{
     width: 100%;
@@ -18,8 +18,19 @@
 
     #user-specific{
         background: white;
-        padding: 12px 0 0 0;
+        padding: 0;
         border-radius: 3px;
+
+        .nav-tabs{
+            margin-bottom: 6px;
+            li{
+                padding: 0;
+                display:table-cell !important;
+                a{
+                    padding: 10px 21px;
+                }
+            }
+        }
 
         #user-info{
 
@@ -102,10 +113,6 @@
             margin: 0;
         }
 
-        .my-flipster{
-            margin-top: 5%;
-        }
-
         .nav .active a h3{
             color: black;
         }
@@ -120,9 +127,6 @@
             }
         }
     }
-    .pagination{
-
-    }
 }
 
 .panel{
@@ -133,19 +137,19 @@
 
   .panel-heading{
     padding-bottom: 0;
-  }
-  
-  .uploader{
+}
+
+.uploader{
     float: left;
     font-size: 12px;
     color: #bbb;
     white-space: nowrap;
 }
-    
-    .time_stamp{
-        font-size: 12px;
-        color: #bbb;
-    }
+
+.time_stamp{
+    font-size: 12px;
+    color: #bbb;
+}
 
 #user{
     width: 80%;
@@ -156,7 +160,7 @@
 
 }
 .my-flipster{
-    margin-top: 3%;
+    margin-top: 12px;
 }
 #sign-up{
     .btn{
