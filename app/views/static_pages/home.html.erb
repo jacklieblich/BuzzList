@@ -6,6 +6,7 @@
       <div class="col-md-12" id= "user-specific">
         <div class="col-xs-7" id = "user-info">
           <%= render current_user %>
+          <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
         </div>
         
         <% if @likes.any? || @tagged_in.any? %>
@@ -89,7 +90,6 @@
       <div class="col-md-12" id = "outer-feed">
         <% end %>
         <div id = "feed">
-        <%= link_to "Follow some friends", users_path, class: "btn btn-primary", id: "add-friends" %>
           <ul class="nav nav-pills nav-justified" id= "feed-filter">
             <li class="active"><a data-toggle="pill" href="#everything">Everything</a></li>
             <li><a data-toggle="pill" href="#your_stuff">Following</a></li>

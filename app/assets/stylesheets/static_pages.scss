@@ -1,7 +1,6 @@
 #add-friends{
-    float: right;
-    clear: both;
-    margin: 6px 6px;
+    float: left;
+    margin-top: 12px;
     }
 
 #home-page{
@@ -42,6 +41,7 @@
         #notification-pills{
             text-align: center;
             padding-right: 12px;
+            padding-left: 0;
             a{
                 border-radius: 3px;
                 border:1px solid #ddd;

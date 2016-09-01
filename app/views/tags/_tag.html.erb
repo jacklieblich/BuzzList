@@ -1,5 +1,5 @@
 <div class = "panel panel-default">
-<div class="panel-heading">
+<div class="panel-heading <%= tag.viewed %>">
 <%= link_to gravatar_for(tag.tagger, size: "20") + tag.tagger.name, tag.tagger %> wants you to check out this <%= tag.taggable_type.downcase%>
 <div class="time_stamp"><%= time_ago_in_words(tag.created_at) %> ago</div>
 </div>

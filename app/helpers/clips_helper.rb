@@ -2,7 +2,7 @@ module ClipsHelper
     
   def embed(video_url)
     video_id = video_url.split("=").last
-    content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{video_id}")
+    content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{video_id}?showinfo=0")
   end
 
 end
