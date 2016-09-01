@@ -5,7 +5,7 @@
     <div id = "clip_<%= clip.id %>">
       <strong><%= clip.title %></strong>
       <div class = "embed-container">  
-        <%= embed(clip.video_id) %>
+        <%= thumbnail(clip.video_id) %>
       </div>
       <div class = "uploader">
         Uploaded by</br> <%= link_to gravatar_for(User.find(clip.user_id), size: "20") + User.find(clip.user_id).name, user_path(User.find(clip.user_id)) %></br>

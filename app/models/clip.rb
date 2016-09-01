@@ -5,7 +5,7 @@ class Clip < ActiveRecord::Base
   belongs_to :user
   has_many :likes, as: :likable, dependent: :destroy
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
-  has_many :tags, as: :taggable
+  has_many :tags, as: :taggable, dependent: :destroy
   after_create :like_self
 
   protected

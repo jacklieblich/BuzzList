@@ -10,3 +10,6 @@ $(document).ajaxComplete ->
             $('#clip_episode_id').html(options)
         else
             $('#clip_episode_id').empty()
+$(document).ready ->
+	$('.youtube-thumbnail').on 'click', ->
+		$(this).parent().html '<iframe width="560" height="315" src="//www.youtube.com/embed/' + this.id + '?autoplay=1&showinfo=0" frameborder="0" allowfullscreen></iframe>'
