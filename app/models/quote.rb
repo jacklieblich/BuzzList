@@ -6,5 +6,10 @@ class Quote < ActiveRecord::Base
   has_many :likes, as: :likable, dependent: :destroy
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
   has_many :tags, as: :taggable
+  after_create :like_self
 
+  protected
+  def like_self
+  	user.likes.create(likable_type: "Quote", likable_id: id, viewed: true)
+  end
 end
