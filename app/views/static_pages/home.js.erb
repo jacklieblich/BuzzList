@@ -1,7 +1,9 @@
-$("#your_stuff").html("<%= j render partial: 'feed', locals: {items: @friend_feed_items, page_param: "my_feed"} %>");
 $("#everything").html("<%= j render partial: 'feed', locals: {items: @feed_items, page_param: "all_feed"} %>");
+<% if logged_in? %>
+$("#your_stuff").html("<%= j render partial: 'feed', locals: {items: @friend_feed_items, page_param: "my_feed"} %>");
 $("#liked").html("<%= j render "liked" %>");
 $("#tagged_in").html("<%= j render "tagged_in" %>");
+<% end %>
 $("html, body").animate({ scrollTop: 0 }, "slow");
 $('.items').masonry({
 	itemSelector: '.panel',
