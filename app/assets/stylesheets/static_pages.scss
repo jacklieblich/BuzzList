@@ -71,6 +71,19 @@
             margin: 0 auto
         }
 
+        .list-group-item{
+            text-align: left;
+            .buzzlist-feed-item{
+                display: inline-flex;
+                h2{
+                    color: black;
+                    margin: auto;
+                    margin-left: 12px;
+
+                }
+            }
+        }
+
     }
     #liked, #tagged_in{
 

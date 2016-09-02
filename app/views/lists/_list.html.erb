@@ -1,5 +1,7 @@
 <a href=<%=list_path(list.id)%> class="list-group-item">
   <span class="badge"><%= pluralize(list.list_episodes.count, "Episode") %></span>
+  <span class="buzzlist-feed-item">
       <%= image_tag(list.show.poster, height: "100")%>
       <h2><%= Show.find_by(id: list.show_id).title %></h2>
+      </span>
 </a>
