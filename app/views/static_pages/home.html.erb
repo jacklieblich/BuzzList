@@ -91,6 +91,8 @@
             <div id="your_stuff" class="tab-pane fade">
               <% if logged_in? %>
               <%= render partial: 'feed', locals: {items: @friend_feed_items, page_param: "my_feed"} %>
+              <% else %>
+              <%= link_to "Log In to Follow Friends", "login", class: "btn btn-primary login" %>
               <% end %>
             </div>
           </div>
