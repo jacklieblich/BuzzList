@@ -21,9 +21,9 @@ $(document).on("turbolinks:load", function() {
     }
 });
 });
+
 $(document).on("click", ".pagination a", function(){
 	$(this).parent().parent().html("Loading Sick Shit . . .");
 	$.getScript(this.href);
 	return false;
 });
-

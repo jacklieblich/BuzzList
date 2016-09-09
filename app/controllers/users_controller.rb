@@ -59,6 +59,7 @@ end
 private
 
 def user_params
+  params[:user][:email].downcase!
   params.require(:user).permit(:name, :email, :password,
    :password_confirmation)
 end

@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
@@ -42,6 +41,24 @@ class User < ActiveRecord::Base
   
   def self.search(query)
       (where("lower(name) like ?", "%#{query.downcase}%") + where("lower(email) like ?", "%#{query.downcase}%")).uniq
+  end
+  
+  #create user with omniauth
+  def self.from_omniauth(auth)
+    user = find_by(email: auth.info.email.downcase)
+  unless user
+    user = find_or_create_by(uid: auth.uid)
+  end
+    user.provider = auth.provider
+    user.uid = auth.uid
+    unless user.name
+      user.name = auth.info.name
+    end
+    user.image = auth.info.image
+    user.oauth_token = auth.credentials.token
+    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    user.save(validate: false)
+    return user
   end
 
 end

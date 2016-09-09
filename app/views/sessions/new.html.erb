@@ -3,7 +3,7 @@
 <h1>Log in</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-6">
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email %>
@@ -17,5 +17,11 @@
 
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
   </div>
+  <div class="col-md-4 col-md-offset-1" id="facebook-login">
+  <h2>Log in with Facebook</h2>
+  <%= link_to "/auth/facebook" do %>
+  <%= image_tag "facebook_login_button.png", height: "50" %>
+  <% end %>
+</div>
 </div>
 </div>
