@@ -40,31 +40,31 @@
           </div>
           
           <div id="shows" class="tab-pane fade">
-          <div id= "my-lists">
-            <%= form_tag root_path, method: 'get' do %>
-            <p>
-              <%= text_field_tag :search, params[:search], class: "form-control" %>
-              <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
-            </p>
-            <% end %>
-            <div class="my-flipster">
-              <ul>
-                <% @shows.each do |show| %>
-                <li>
-                  <%= link_to (image_tag show.poster, width: "125"), show_path(show, items: "media") %> 
-                </li>
-                <% end %>
-              </ul>
-            </div>
+            <div id= "my-lists">
+              <%= form_tag root_path, method: 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search], class: "form-control" %>
+                <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+              </p>
+              <% end %>
+              <div class="my-flipster">
+                <ul>
+                  <% @shows.each do |show| %>
+                  <li>
+                    <%= link_to (image_tag show.poster, width: "125"), show_path(show, items: "media") %> 
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
             </div>
           </div>
           
           <% if current_user.lists.any? %>
           <div id="lists" class="tab-pane fade">
-          <div id = "my-lists">
-            <div class="list-group">
-              <%= render current_user.lists %>
-            </div>
+            <div id = "my-lists">
+              <div class="list-group">
+                <%= render current_user.lists %>
+              </div>
             </div>
           </div>
           <% end %>
@@ -77,6 +77,17 @@
     <% if logged_in? %>
     <div class="col-md-8 col-xs-12" id= "outer-feed">
       <% else %>
+      <div class="col-xs-12" id = "logged-out-outer-flipster">
+        <div class="my-flipster" id="logged-out-flipster">
+          <ul>
+            <% @shows.each do |show| %>
+            <li>
+              <%= link_to (image_tag show.poster, width: "125"), show_path(show, items: "media") %> 
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
       <div class="col-xs-12" id = "outer-feed">
         <% end %>
         <div id = "feed">
@@ -99,6 +110,6 @@
             </div>
           </div>
         </div>
-    </div>
+      </div>
     </div>
   </div>
