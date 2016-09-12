@@ -1,5 +1,6 @@
 <div class= "items transitions-enabled">
 	<%= render @likes %>
+	<% @likes.each {|like| like.mark_viewed} %>
 </div>
 <div class="text-center">
 	<%= will_paginate @likes, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "likes" %>

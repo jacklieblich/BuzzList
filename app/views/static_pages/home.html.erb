@@ -22,8 +22,8 @@
             <div class="col-xs-5" id = "notification-pills">
               <h4>Notifications</h4>
               <ul class="nav nav-pills nav-stacked" role="tablist">
-                <li role="presentation" ><a data-toggle="pill" href="#tagged_in">Shared With Me<span class="badge"><%= current_user.passive_tags.where(viewed: false).count %></span></a></li>
-                <li role="presentation"><a data-toggle="pill" href="#liked">Likes<span class="badge"><%= current_user.quote_likes.where(viewed: false).where.not(user_id: current_user).count + current_user.clip_likes.where(viewed: false).where.not(user_id: current_user).count %></span></a></li>
+                <li role="presentation" ><a data-toggle="pill" href="#tagged_in">Shared With Me<% if current_user.passive_tags.where(viewed: false).any? %> <span class="badge"><%= current_user.passive_tags.where(viewed: false).count %></span> <% end %></a></li>
+                <li role="presentation"><a data-toggle="pill" href="#liked">Likes<% if current_user.quote_likes.where(viewed: false).where.not(user_id: current_user).any? || current_user.clip_likes.where(viewed: false).where.not(user_id: current_user).any? %><span class="badge"><%= current_user.quote_likes.where(viewed: false).where.not(user_id: current_user).count + current_user.clip_likes.where(viewed: false).where.not(user_id: current_user).count %></span><% end %></a></li>
               </ul>
             </div>
             <div class="col-xs-12" id = "notification-content">

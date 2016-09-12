@@ -1,5 +1,6 @@
 <div class= "items transitions-enabled">
 	<%= render @tagged_in %>
+	<% @tagged_in.each { |item| item.mark_viewed } %>
 </div>
 <div class="text-center">
 	<%= will_paginate @tagged_in, inner_window: 1, outer_window: 0, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails, param_name: "shared" %>

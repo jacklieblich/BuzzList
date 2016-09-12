@@ -5,6 +5,7 @@ class Like < ActiveRecord::Base
 	belongs_to :user
 	has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 	after_create :destroy_activity
+	
 	def mark_viewed
 		update_attribute(:viewed, true)
 	end
