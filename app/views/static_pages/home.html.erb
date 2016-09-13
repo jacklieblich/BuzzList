@@ -79,6 +79,12 @@
       <% else %>
       <div class="col-xs-12" id = "logged-out-outer-flipster">
         <div class="my-flipster" id="logged-out-flipster">
+        <%= form_tag root_path, method: 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search], class: "form-control" %>
+                <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+              </p>
+              <% end %>
           <ul>
             <% @shows.each do |show| %>
             <li>
